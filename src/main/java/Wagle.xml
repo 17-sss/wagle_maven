@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ldg.mybatis">
+	
+	<select id="getNextNumber"	resultType="int" >
+		select wagle_wagleser.nextval from dual
+	</select>
+	
+	
+	<!-- 와글을 오픈한다. -->
+	<insert id="wagleOpen" parameterType="Wagle">
+		insert into wagle_list(wboardid,wname,whost,whostemail,wmax,wprofile,wintro,wcategory,wloc,wstart,wend,wevent1,wevent2,weventdate1,weventdate2,filename,filesize)
+		values(#{wboardid},#{wname},#{whost},#{whostemail},#{wmax},#{wprofile},#{wintro},#{wcategory},#{wloc},#{wstart},#{wend},#{wevent1},#{wevent2},#{weventdate1},#{weventdate2},#{filename},#{filesize})
+	</insert>
+	
+	<!-- 내가 오픈한 와글 갯수-->
+	<select id="getWagleCount1" parameterType="hashmap" resultType="int">
+		select nvl(count(*),0) from wagle_list where whostemail=#{email}
+	</select>
+	
+	<!-- 내가 가입한 와글 갯수 -->
+	<select id="getWagleCount2" parameterType="hashmap" resultType="int">
+		select nvl(count(*),0) from wagle_list where wagleremail=#{email}
+	</select>
+	
+	<!-- 와글의 회원 수 -->
+	<select id="getWagleCount3" parameterType="hashmap" resultType="int">
+		select nvl(count(*),0) from wagle_list where wboardid=#{wboardid}
+	</select>
+	
+	<!-- 내가 오픈한 와글의 리스트 -->
+	<select id="getWagles1" parameterType="hashmap" resultType="Wagle">
+			select * from wagle_list where whostemail=#{email} order by wboardid desc
+	</select>
+	
+	<!-- 내가 가입한 와글의 리스트 -->
+	<select id="getWagles2" parameterType="hashmap" resultType="Wagle">
+			select * from wagle_list where wagleremail=#{email} order by wboardid desc
+	</select>
+		
+	<!-- 와글 회원 구하기 -->	
+	<select id="getWagleMember" parameterType="hashmap" resultType="Wagle">
+		select * from wagle_list where wboardid=#{wboardid} and whost IS NULL
+	</select>
+	
+	<!-- 호스트 정보 구하기 -->
+	<select id="getHost" parameterType="hashmap" resultType="String">
+			select whost from wagle_list where wboardid=#{wboardid} and wagler IS NULL
+	</select>
+	
+	<select id="getHostemail" parameterType="hashmap" resultType="String">
+			select whostemail from wagle_list where wboardid=#{wboardid} and wagler IS NULL
+	</select>
+
+	
+	<!-- 내가 오픈한 와글의 정보 수정 -->
+	<select id="getWagle" parameterType="hashmap" resultType="Wagle">
+			select * from wagle_list where wboardid = #{wboardid} and wagler IS NULL
+	</select>
+	
+	<!-- 이미지 슬라이드 -->
+	<select id="imgslide" resultType="Wagle">
+			select * from wagle_list where wagler IS NULL order by wboardid asc
+	</select>
+	
+	<!-- 와글장이 와글을 수정한다. -->
+	<update id="updateWagle"	parameterType="Wagle">
+			update wagle_list set wname=#{wname},wprofile=#{wprofile},wintro=#{wintro},wmax=#{wmax},wcategory=#{wcategory},wloc=#{wloc},wstart=#{wstart},wend=#{wend},wevent1=#{wevent1},wevent2=#{wevent2},weventdate1=#{weventdate1},weventdate2=#{weventdate2},filename=#{filename},filesize=#{filesize} where wboardid=#{wboardid} and wagler IS NULL
+	</update>
+	
+	<!-- 와글장이 와글명을 바꾸면 와글러한테도 와글명이 바뀐다. -->
+	<update id="updateWagle2"	parameterType="Wagle">
+			update wagle_list set wname=#{wname},wcategory=#{wcategory} where wboardid=#{wboardid} and wagler IS NOT NULL
+	</update>
+	
+	<!-- 와글장이 와글을 삭제한다. -->
+	<delete id="deleteWagle" parameterType="hashmap">
+		delete from wagle_list where wboardid=#{wboardid}
+	</delete>
+	
+	<!-- 상단바의 와글와글에서 모든 와글리스트 확인 가능 -->
+	<select id="getWaglelist" parameterType="hashmap" resultType="Wagle">
+			select * from wagle_list where wagler IS NULL order by wboardid desc
+	</select>
+	
+	<select id="searchWaglelist" parameterType="hashmap" resultType="Wagle">
+			select * from wagle_list where wagler IS NULL and wcategory=#{wcategory} order by wboardid desc
+	</select>
+	
+	<!-- 원하는 와글에 가입한다. -->
+	<insert id="wagleJoin" parameterType="hashmap">
+		insert into wagle_list(wboardid,wcategory,wagler,wname,wagleremail)
+		values(#{wboardid},#{wcategory},#{wagler},#{wname},#{wagleremail})
+	</insert>
+	
+	<!-- 원치 않는 와글에서 탈퇴한다. -->
+	<delete id="wagleOut" parameterType="hashmap">
+		delete from wagle_list where wboardid=#{wboardid} and wagleremail=#{wagleremail}
+	</delete>
+	
+	<!-- 와글와글 리스트에서 내가 가입한 와글인지 아닌지 체크하여 버튼의 활성화 여부를 결정한다 -->
+	<select id="waglechk" parameterType="hashmap" resultType="map">
+			select * from wagle_list where wboardid=#{wboardid} and wagleremail=#{wagleremail}
+	</select>
+	
+	<!-- ============ 관리자 - 그룹 목록 출력 =============== -->
+	<select id="getWaglelist_ad" parameterType="hashmap" resultType="Wagle">
+		select * from (select rownum rnum, a.* from (select wboardid, wname, whost from wagle_list where 
+		whost IS NOT NULL order by wboardid desc)a) where rnum between #{startRow} and #{endRow} 
+	</select>
+	
+	<select id="getWagleCount_ad" resultType="int">
+		SELECT nvl(count(*),0) FROM wagle_list where whost IS NOT NULL
+	</select>
+	
+	<!-- ============================================ -->
+	
+	
+	
+</mapper>

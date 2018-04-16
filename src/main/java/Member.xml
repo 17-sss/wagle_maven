@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ldg.mybatis">
+      
+    <select id="getNextNum" resultType="int" parameterType="hashmap">
+		select wagle_memberser.nextval from dual
+	</select>
+	
+	<select id="getUser" parameterType="hashmap" resultType="Member">
+		select * from wagle_member WHERE email=#{email}
+	</select>
+	
+	<select id="getUser2" parameterType="hashmap" resultType="Member">
+		select * from wagle_member WHERE email=#{email}
+	</select>
+	
+	<select id="getUser3" parameterType="hashmap" resultType="map">
+		select * from wagle_member WHERE email=#{email} and pwdQ=#{pwdQ} and pwdA=#{pwdA}
+	</select>
+	
+	
+	
+      <insert id="insertMember" parameterType="Member">
+		insert into wagle_member(num, email, pwd, name, gender, age, loc, regdate, pwdQ, pwdA) 
+			values(#{num},#{email},#{pwd},#{name},#{gender}, #{age}, #{loc}, sysdate, #{pwdQ}, #{pwdA})
+      </insert>
+      
+      <update id="updateMember" parameterType="Member">
+		update wagle_member set email=#{email}, pwd=#{pwd}, loc=#{loc}, age=#{age} where email=#{email}
+      </update>
+      
+      <delete id="deleteMember" parameterType="hashmap">
+    	delete from wagle_member where email=#{email} and pwd=#{pwd}
+      </delete>
+      
+      <delete id="deleteMember2" parameterType="hashmap">
+    	delete from wagle_member where email=#{email}
+      </delete>
+      
+      <select id="confirmId" parameterType="hashmap" resultType="map">
+      	select email from wagle_member where email = #{email}
+      </select>
+      
+      <select id="login" parameterType="hashmap" resultType="map">
+      	SELECT pwd FROM wagle_member WHERE email = #{email}
+      </select>
+      
+      <select id="getMemberCount" resultType="int">
+		SELECT nvl(count(*),0) FROM wagle_member
+	  </select>
+	
+	  <select id="getMembers" parameterType="hashmap" resultType="Member">
+		select * from (select rownum rnum, a.* from (select num, email, pwd, name, gender, age, loc, regdate, pwdQ, pwdA from 
+		wagle_member order by num desc)a) where rnum between #{startRow} and #{endRow}
+	  </select>
+	
+</mapper>

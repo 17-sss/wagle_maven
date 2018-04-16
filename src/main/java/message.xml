@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="message.mybatis">
+	<select id ="getNextNumber" resultType="int" >
+				select wagle_messagewser.nextval from dual
+	</select>
+	
+	<insert id="sendMessage" parameterType="message">
+		insert into message(num,userinfo,sendmessage,regdate,userinfo2) values(#{num},#{userinfo},#{sendmessage},sysdate,#{userinfo2})
+	</insert>
+	<insert id="sendMessage2" parameterType="message">
+		insert into message(num,userinfo,receivemessage,regdate,userinfo2) values(#{num},#{userinfo},#{sendmessage},sysdate,#{userinfo2})
+	</insert>
+	<select id="messagelist" resultType="message" parameterType="hashmap">
+		select * from(select ROWNUM rnum,b.* from(select a.* from message a where userinfo2 = #{name} and receivemessage IS NOT NULL  ) 
+				b)where rnum BETWEEN #{startRow} and #{endRow}
+	</select>
+	<select id="messagelist2" resultType="message" parameterType="hashmap">
+		select * from(select ROWNUM rnum,b.* from(select a.* from message a where userinfo = #{name} and sendmessage IS NOT NULL) 
+				b)where rnum BETWEEN #{startRow} and #{endRow}
+	</select>
+	<select id="messagelist3" resultType="message" parameterType="hashmap">
+		select * from(select ROWNUM rnum,b.* from(select a.* from message a where userinfo = #{name} and receivemessage IS NOT NULL and userinfo2 = #{name}) 
+				b)where rnum BETWEEN #{startRow} and #{endRow}
+	</select>
+	<delete id="deleteArticle" parameterType="hashmap">
+		delete from message where num=#{numint}
+	</delete>
+	
+	<update id="updateConfirm" parameterType="hashmap">
+		update message set confirm = '2' where num = #{num}
+	</update>
+	
+	<select id="getArticle" resultType="message" parameterType="hashmap">
+			select * from message where num =#{num} 	
+	</select>
+	
+	<select id="count" resultType="int">
+		SELECT count(*) FROM message where confirm = '1' and userinfo2 = #{name} and receivemessage IS NOT NULL
+	</select>
+	<select id="orderby1" resultType="message" parameterType="hashmap">
+		select * from(select ROWNUM rnum,b.* from(select a.* from message a where userinfo2 = #{name} and confirm='1' and receivemessage IS NOT NULL) 
+				b)where rnum BETWEEN #{startRow} and #{endRow}
+	</select>
+	<select id="orderby2" resultType="message" parameterType="hashmap">
+		select * from(select ROWNUM rnum,b.* from(select a.* from message a where userinfo = #{name} and confirm='1' and sendmessage IS NOT NULL) 
+				b)where rnum BETWEEN #{startRow} and #{endRow}
+	</select>
+	<select id="orderby3" resultType="message" parameterType="hashmap">
+		select * from(select ROWNUM rnum,b.* from(select a.* from message a where userinfo = #{name} and userinfo2 = #{name} and confirm='1' and receivemessage IS NOT NULL) 
+				b)where rnum BETWEEN #{startRow} and #{endRow}
+	</select>
+</mapper>

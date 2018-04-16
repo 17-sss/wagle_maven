@@ -1,0 +1,61 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+ body{
+  font-family:'Open Sans', sans-serif;
+  background:#fff;
+  width:90%;
+  margin:0 auto;
+  padding:0 0 0;
+}
+h1:before{
+  content: "// ";
+}
+h1{
+  font-size:2em;
+  color:#fefefe;
+  text-transform:lowercase;
+}
+.wrapper{
+  margin:0 0;
+}
+a,a:visited,a:hover,a:active{
+  -webkit-backface-visibility:hidden;
+          backface-visibility:hidden;
+	position:relative;
+  transition:0.5s color ease;
+	text-decoration:none;
+	color:#dddddb; /*hoverÀü ±Û¾¾»ö±ò*/
+	font-size:2em;
+}
+a:hover{
+	color:#fcd432; /*hoverÈÄ ±Û¾¾»ö±ò*/
+}
+a.before:before,a.after:after{
+  content: "";
+  transition:0.5s all ease;
+  -webkit-backface-visibility:hidden;
+          backface-visibility:hidden;
+  position:absolute;
+}
+a.before:before{
+  top:-0.25em;
+}
+a.after:after{
+  bottom:-0.25em;
+}
+a.before:before,a.after:after{
+  height:5px;
+  height:0.2rem; /*¶óÀÎµÎ²²*/
+  width:0;
+  background:#fcd432; /*¶óÀÎ»ö±ò!*/
+}
+
+a.third:after,a.sixth:before,a.sixth:after{
+  left:50%;
+  -webkit-transform:translateX(-50%);
+          transform:translateX(-50%);
+}
+
+a.before:hover:before,a.after:hover:after{
+  width:100%;
+}

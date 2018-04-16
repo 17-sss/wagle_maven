@@ -1,0 +1,97 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<meta charset="EUC-KR">	
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Coustard|Righteous" rel="stylesheet">
+<head>
+<style>
+		a:link{
+			text-decoration:none;
+			color: black;
+		}
+		a:visited{
+			text-decoration:none;
+			color: black;
+		}
+</style>
+</head>
+
+
+<div class="w3-center">
+	<div class="w3-white">
+		<div>
+			<button class="w3-bar-item w3-button w3-large" style="" title="logo" onclick="location.href='<%=request.getContextPath()%>/index'">
+				Wagle
+			</button>
+			<button class="w3-bar-item w3-button w3-large" title="intro" onclick="location.href='#'">
+				소개
+			</button>
+			<button class="w3-bar-item w3-button w3-hide-small  w3-large" title="waglelist" onclick="document.location.href='/wagle_spring/board/waglelist'">
+				와글와글
+			</button>
+			
+			<c:if test="${sessionEmail != null}">
+			<button class="w3-bar-item w3-button w3-hide-small w3-large" title="openwagle" onclick="document.location.href='/wagle_spring/board/wagleOpen'">
+				오픈와글
+			</button>
+			</c:if>
+			
+			<button class="w3-bar-item w3-button w3-hide-small w3-large" title="faq" onclick="document.location.href='/wagle_spring/board/faqlist'">
+				FAQ
+			</button>
+			
+			<c:if test="${sessionEmail != null}">
+			<div class="w3-dropdown-hover">
+				<button class="w3-button w3-large">My Page</button>
+				<div class="w3-dropdown-content w3-bar-block w3-border">
+					<a href="/wagle_spring/board/mylist" class="w3-bar-item w3-button w3-large">와글관리</a> 
+					<a href="/wagle_spring/member/updateForm?email=${sessionEmail}" class="w3-bar-item w3-button w3-large">회원정보</a>
+				</div>
+			</div>
+			</c:if>
+			
+			<c:if test="${sessionEmail eq 'admin'}">
+			<div class="w3-dropdown-hover">
+				<button class="w3-button w3-large w3-small">관리자 페이지</button>
+				<div class="w3-dropdown-content w3-bar-block w3-border">
+					<button class="w3-bar-item w3-button w3-hide-small w3-large" title="memberlist" onclick="document.location.href='${pageContext.request.contextPath}/admin/memberlist'">
+						회원관리
+					</button>
+					<button class="w3-bar-item w3-button w3-hide-small w3-large" title="waglelist_ad" onclick="document.location.href='${pageContext.request.contextPath}/admin/waglelist_ad'">
+						그룹관리
+					</button>
+				</div>
+			</div>
+			</c:if>
+			
+			<c:if test="${sessionEmail == null}"> 
+			<button class="w3-bar-item w3-button w3-hide-small w3-large w3-right" onclick="document.getElementById('login').style.display='block'"> 
+					Login
+			</button>
+	
+			</c:if> 
+			<c:if test="${sessionEmail != null}">
+			<button class="w3-bar-item w3-button w3-hide-small w3-large w3-right" onclick="document.location.href='/wagle_spring/member/logout'">
+					Logout
+			</button>
+			<label class="w3-right w3-small" style="margin:10px 10px 0px 0px;"> <b>${name}</b> 님 환영합니다.</label>
+			
+			
+		 <c:if test="${count != 0}"> 
+         <div class="w3-right w3-small" style="margin:10px 10px 0px 0px;"><a href="<%=request.getContextPath()%>/message/messagelist">쪽지&nbsp;${count}<strong><font color="red">N</font></strong></a></div>
+     	 </c:if>
+         <c:if test="${count == 0}">
+         <div class="w3-right w3-small" style="margin:10px 10px 0px 0px;"><a href="<%=request.getContextPath()%>/message/sendmessageForm">쪽지</a></div>
+         </c:if>
+		</c:if>
+		</div>	
+			
+			
+		
+	</div>
+</div>
+</html>
