@@ -6,70 +6,7 @@
 <html lang="en" >
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<link rel="stylesheet" href="https://www.koolchart.com/demo/KoolChart/Assets/Css/KoolChart.css"/>
-	<link rel="stylesheet" href="https://www.koolchart.com/demo/Samples/Web/sample.css"/>
-	<script src="https://www.koolchart.com/demo/LicenseKey/codepen/KoolChartLicense.js"></script>
-	<script src="https://www.koolchart.com/demo/KoolChart/JS/KoolIntegration.js"></script>
-	<script type="text/javascript">
-	var chartVars = "KoolOnLoadCallFunction=chartReadyHandler";
-
-	KoolChart.create("chart1", "chartHolder", chartVars, "100%", "100%");
-
-	function chartReadyHandler(id) {
-	  document.getElementById(id).setLayout(layoutStr);
-	  document.getElementById(id).setData(makeData());
-	  setTimeout(changeData, 5000);
-	}
-
-	var layoutStr =
-	  '<KoolChart backgroundColor="#FFFFFF"  borderStyle="none" fontFamily="Noto Sans">'
-	   +'<WordCloudChart showDataTips="true">'
-	    +'<series>'
-	     +'<WordCloudSeries textField="text" weightField="weight">'
-	      +'<showDataEffect>'
-	       +'<SeriesInterpolate duration="1000"/>'
-	      +'</showDataEffect>'
-	      +'<fills>'
-	       +'<SolidColor color="#5586a4"/>'
-	       +'<SolidColor color="#40b2e6"/>'
-	       +'<SolidColor color="#ffa123"/>'
-	       +'<SolidColor color="#595c7b"/>'
-	       +'<SolidColor color="#ef8075"/>'
-	       +'<SolidColor color="#f8ba03"/>'
-	       +'<SolidColor color="#03b79a"/>'
-	       +'<SolidColor color="#a5d4e6"/>'
-	       +'<SolidColor color="#b79d7c"/>'
-	       +'<SolidColor color="#9e589e"/>'
-	      +'</fills>'
-	     +'</WordCloudSeries>'
-	    +'</series>'
-	   +'</WordCloudChart>'
-	  +'</KoolChart>';
-
-	function changeData(){
-	  document.getElementById("chart1").setData(makeData());
-	  setTimeout(changeData, 5000);
-	 }
-	
-	 // [수정] 프로젝트용
-	 function makeData(){
-	  var i, n,
-	   chartData = [];
-	   var data = [];
-	   <c:forEach items="${imgslide}" var="word">
-	   		data.push("${word.wname}");
-	   </c:forEach>
-	  
-	  for(i = 0, n = data.length ; i < n ; i += 1){
-	   chartData.push({
-	    text : data[i],
-	    weight : Math.floor(Math.random(10) * 100)
-	   });
-	  }
-	  return chartData;
-	 }
-	 </script>
+  <meta charset="UTF-8">
   <!-- sidebar-->
   	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -174,19 +111,17 @@
     </div>
   </section>
   
+  
   <section class="background">
     <div class="content-wrapper">
-      <p class="content-title">&nbsp;</p>
-      <p class="content-subtitle" style="font-size: 15pt; margin-top: 64px;">관심사 <b>카테고리</b></p>
-      <div id="chartHolder" style="height:650px; width:100%; margin-top: 80px;"></div>
-      <div class="w3-center">
-     	 <button class="w3-btn" onclick="document.location.href='${pageContext.request.contextPath}/board/wagleOpen'"
-     	 style="width: 20%; margin-top: 240px;">와글지기가 되어주세요!</button>
-      </div>
+      <p class="content-title">워드클라우드</p>
+      <p class="content-subtitle">관심사 카테고리</p>
+     
+      <button class="w3-btn w3-display-middle" onclick="document.location.href='${pageContext.request.contextPath}/board/wagleOpen'"
+      style="width: 20%; margin-top: 240px;">와글지기가 되어주세요!</button>
+      
     </div>
   </section>
-  
-
   
   
   <section class="background">
