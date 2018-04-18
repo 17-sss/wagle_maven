@@ -19,6 +19,7 @@
 <form autocomplete="off" method="post" action="sendPro">
 	<input type="hidden" name="userinfo" value="${name}">
 	<input class="w3-button" type="submit" value="º¸³»±â">
+	
 	<hr>
 	<div>
 

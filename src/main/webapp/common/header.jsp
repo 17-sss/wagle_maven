@@ -26,11 +26,11 @@
 	      <c:if test="${sessionEmail != null}">
 	      	<label class="w3-right w3-small" style="margin:10px 10px 0px 0px;"> <b>${name}</b> 님 환영합니다.</label>
 				    
-				    <c:if test="${count != 0}"> 
+				    <c:if test="${count != 0 && count != null}"> 
 			         <div class="w3-right w3-small" style="margin:10px 10px 0px 0px;">
 			         	<a href="${pageContext.request.contextPath}/message/messagelist">쪽지&nbsp;${count}<strong><font color="red">N</font></strong></a></div>
 			     	</c:if>
-			        <c:if test="${count == 0}">
+			        <c:if test="${count == 0 || count == null}">
 			         <div class="w3-right w3-small" style="margin:10px 10px 0px 0px;">
 			         	<a href="${pageContext.request.contextPath}/message/sendmessageForm">쪽지</a></div>
 			        </c:if>
