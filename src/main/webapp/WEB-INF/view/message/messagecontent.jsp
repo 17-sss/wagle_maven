@@ -18,8 +18,6 @@ li{display:inline;}
 	<div>
 	<ul>
 	<li><input type="submit"class="w3-button" value="삭제"></li>
-	<li><button class="w3-button">보관</button></li>
-	<li><button class="w3-button">답장</button></li>
 	<c:if test="${group=='1'}">
 	<li><a href="messagelist" class="w3-button">목록</a></li>
 	</c:if>
