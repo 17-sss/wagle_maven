@@ -15,6 +15,8 @@
 </style>
 
 <body> <!-- Çü¿ø -->
+<%@include file="/common/header.jsp" %>
+
 <div class="w3-container w3-center" style="margin-left:25%; margin-top:200px;">
 
 <div class="w3-container" style="width:70%">

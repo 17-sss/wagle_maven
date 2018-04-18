@@ -56,6 +56,7 @@
 </script>
 
 <body>
+<%@include file="/common/header.jsp" %>
 
 <!-- signup Form -->
 <div class="w3-container w3-half w3-display-middle" style="width:40%;">

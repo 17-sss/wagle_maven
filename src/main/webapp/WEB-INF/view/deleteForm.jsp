@@ -19,7 +19,8 @@
 	
 	
 </head>
-<body><!-- <body style="margin-top: 200px;"> -->
+<body>
+<%@include file="/common/header.jsp" %>
 <div class="w3-container" style="margin-top: 13%;">
 <!-- <p class="w3-left" style="padding-left: 30px;"></p> -->
 <center>

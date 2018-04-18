@@ -80,6 +80,7 @@ body{
 </script>
 
 <body>
+<%@include file="/common/header.jsp" %>
 	<div id="p" style="width:1200px;">
 		<div>
 			<h2><b>FAQ</b></h2>

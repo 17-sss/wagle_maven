@@ -47,9 +47,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<center>
+<%@include file="/common/header.jsp" %>
+	<center >
 	<form method="post" enctype="multipart/form-data" action="wagleUpdatePro">
-		<h4>Wagle Update</h4>
+		<h4 style="margin-top: 3em;">Wagle Update</h4>
 	
 		<input type="hidden" name="whost" value="${wagle.whost}"/>
 		<input type="hidden" name="wboardid" value="${wagle.wboardid}"/>

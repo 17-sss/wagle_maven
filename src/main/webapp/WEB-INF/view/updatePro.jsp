@@ -10,7 +10,7 @@
 		<script>
 		alert("회원정보가 수정되었습니다.")</script>
 		<c:if test="${sessionEmail ne 'admin'}">
-			<meta http-equiv="Refresh" content="0;url=${pageContext.request.contextPath}/index?email=${member.email}">
+			<meta http-equiv="Refresh" content="0;url=updateForm?email=${member.email}">
 		</c:if>
 		<c:if test="${sessionEmail eq 'admin'}">
 			<meta http-equiv="Refresh" content="0;url=${pageContext.request.contextPath}/admin/memberlist">

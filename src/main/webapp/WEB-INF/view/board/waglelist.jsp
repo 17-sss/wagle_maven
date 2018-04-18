@@ -20,40 +20,13 @@
 		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>		
 	
 		<style type="text/css">
-			/* 임시 백그라운드 배경. */
-			.bgimg {
-				min-height: 100%;
-				background-position: center;
-				background-size: cover;
-				width: 100%;
-				height: 100%;
-			}
+		
 			/* 이미지 반응형으로 처리.  */
 			.autoimg {
 				display: inline-block;
 				width: auto !important;
 				max-width: 100%;
 				height: 300px !important;
-			}
-			section {
-				height: 50vh !important;
-	        	overflow: hidden;
-	        	background-attachment: fixed;
-	        	background-size: cover;
-			}
-			.section_img1 {
-			/* 	background-color: black; */
-			}
-			
-			/* 수평선 설정  */
-			hr {
-			    display: block;
-			    margin-top: 0.5em;
-			    margin-bottom: 0.5em;
-			    margin-left: auto;
-			    margin-right: auto;
-			    border-style: inset;
-			    border-width: 1px;
 			}
 			
 			/* 검색 설정 */
@@ -64,27 +37,16 @@
 				border-bottom: 1px solid #ccc;
 				width: 52%
 			}
-			/* 밑줄 [따로 적용하기 위함] */
-			.underline {
-				 width: 300px;
- 				 border-bottom: 2px solid currentColor;
- 				 border-bottom-color: red;
-			}
-			/* 밑줄 (빨강) */
-			.underline-red {
- 				border-bottom-color: red;
-			}
-			.custom-font {
-				font-family: 'Coustard', serif;
-			}
-			
+		
 	</style>
 	
 	</head>
+	<%@include file="/common/header.jsp" %>
 	<body class="demo-magneto">
+		
 		<main>
-			<section class="content content--layout">
-				<h2 class="word word--magneto">wagle</h2>
+			<section class="content content--layout" style="height: 30vh;">
+				<h2 class="word word--magneto" style="font-size: 9vw;">wagle</h2>
 			</section>
 		</main>
 		

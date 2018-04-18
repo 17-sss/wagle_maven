@@ -73,7 +73,7 @@ html {
 }
 
 body {
-	font-family: 'Nunito', monospace;
+	/* font-family: 'Nunito', monospace; */
 	color: var(--color-text);
 	background-color: var(--color-background);
 	min-height: 100vh;
@@ -186,9 +186,9 @@ main {
 	display: grid;
 	justify-content: center;
 	align-content: center;
-	height: 100vh;
+	height: 50vh;
 	overflow: hidden;
-	min-height: 650px;
+	min-height: 400px;
 	margin: 0 auto;
 }
 
@@ -211,7 +211,8 @@ main {
 
 .content--layout {
 	grid-template-columns: 100%;
-	padding: 3em 0;
+	padding: 0;
+	margin-top: 2.3rem;
 }
 
 .content--fixed a {

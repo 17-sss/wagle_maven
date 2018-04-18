@@ -29,6 +29,7 @@
 	</style>
 <title>Insert title here</title>
 </head>
+<%@include file="/common/header.jsp" %>
 <body class="w3-light-gray">
 
 <!-- 그룹 배경 -->

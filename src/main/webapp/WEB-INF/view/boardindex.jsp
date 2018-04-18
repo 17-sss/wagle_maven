@@ -88,11 +88,10 @@
   	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/slide.css">  
    
 </head>
-
 <body>
-  <!-- <div class="container"> -->
+  
   <section class="background">
-    <div class="content-wrapper">
+     <div class="content-wrapper">
  
 	<!-- side nav -->
 	
