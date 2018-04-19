@@ -8,16 +8,91 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<style type="text/css">
-	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-	
-	body {
-		/*font-family: 'Jeju Gothic';*/
-		background-size: cover;
- 		padding-top: 5en;
- 		/* display: flex; */
- 		justify-content: center;
-	}
+<style>
+
+.row {
+  display: table-row;
+  background: #fff;
+}
+
+.row.header {
+  color: #ffffff;
+  background: #FCB043;
+}
+
+@media screen and (max-width: 768px) {
+  .row {
+    display: block;
+  }
+
+  .row.header .cell {
+    display: none;
+  }
+
+  .row .cell:before {
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: unset !important;
+    margin-bottom: 13px;
+    content: attr(data-title);
+    min-width: 98px;
+    display: block;
+  }
+}
+
+.cell {
+  display: table-cell;
+}
+
+
+.row .cell {
+  color: #666666;
+  line-height: 1.2;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.row.header .cell {
+  color: #fff;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.row .cell:nth-child(1) {
+  width: 300px;
+  text-align: center;
+  padding-left:40px;
+}
+
+.row .cell:nth-child(2) {
+  width: 500px;
+  padding-right:40px;
+}
+
+.table, .row {
+  width: 800px !important;
+}
+
+.row:hover {
+  background-color: lightyellow;
+}
+
+@media (max-width: 768px) {
+  .row {
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 18px;
+    padding-top: 30px;
+    padding-right: 15px;
+    margin: 0;
+  }
+  
+  .row .cell {
+    color: #555555;
+    line-height: 1.2;
+  }
+
+}
 </style>
 <script>
 	//confirm pwd
@@ -35,99 +110,129 @@
         }
         
        }
-	
-	
-	//아이디(email) duplicate
-	function check(){
-		if(!document.joinForm.email.value){
-			alert("Email을 입력하세요");
-			return false;
-		}
-	}
-	function confirmId(){
-		if(document.joinForm.email.value == ""){
-			alert("Email을 중복체크 하세요");
-			return;
-		}
-		url = "confirmId.jsp?id=" + document.joinForm.id.value;
-		open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300,height=200");
-	}
-	
+
 </script>
 
 <body>
 <%@include file="/common/header.jsp" %>
 
 <!-- signup Form -->
-<div class="w3-container w3-half w3-display-middle" style="width:40%;">
-  <form class="w3-container w3-transparent" method="post" name="updateForm" onSubmit="return check()"
-	action="${pageContext.request.contextPath}/member/updatePro">
-  <ul class="w3-ul w3-hover-shadow">
-  <li class="w3-yellow w3-xlarge w3-center w3-padding-32" style="color: black; width:100%;">회원정보수정</li>
-  <input type="hidden" name="email" value="${member.email}"/>	
-		<!-- 기본정보 -->
-			<table class="w3-table w3-bordered" style="width:100%;">
-			<tr height="30">
-			<td width="30">이름 :</td>
-			<td width="70">${member.name}</td>
-			</tr>
-			<tr height="30">
-			<td width="30">이메일 :</td>
-			<td width="70">${member.email}</td>
-			</tr>
-			<tr height="30">
-			<td width="30">비밀번호:</td>
-			<td width="70">
-			<c:if test="${sessionEmail ne 'admin'}">
-			<input class="w3-input w3-border  w3-light-grey" type="password" name="pwd" size="20" value="${member.pwd}" required="required">
-			</c:if>
-			<c:if test="${sessionEmail eq 'admin'}">
-			<input class="w3-input w3-border  w3-light-grey" type="text" name="pwd" size="20" value="${member.pwd}" required="required">
-			</c:if>
-			</td></tr>
-			<c:if test="${sessionEmail ne 'admin'}">
-			<tr height="30">
-			<td width="30">비밀번호 확인 :</td>
-			<td width="70">
-			<input class="w3-input w3-border  w3-light-grey" type="password" name="confirmPwd" size="20" onkeyup="checkPwd()" required="required">
-			<div id="checkPwd"></div>
-			</td></tr>
-			</c:if>
-			<tr height="30">
-			<td width="30">성별 :</td>
-			<td width="70">${member.gender}</td>
-			</tr>
-			<tr height="30">
-			<td width="30">나이 :</td>
-			<td width="70">
-				 <input type="radio" name="age" value="10대" required="required" <c:if test="${member.age eq '10대'}">checked </c:if>>10대
-				 <input type="radio" name="age" value="20대" required="required" <c:if test="${member.age eq '20대'}">checked </c:if>>20대
-				 <input type="radio" name="age" value="30대" required="required" <c:if test="${member.age eq '30대'}">checked </c:if>>30대
-				 <input type="radio" name="age" value="40대" required="required" <c:if test="${member.age eq '40대'}">checked </c:if>>40대
-				 <input type="radio" name="age" value="50대" required="required" <c:if test="${member.age eq '50대'}">checked </c:if>>50대
-				 <input type="radio" name="age" value="60대" required="required" <c:if test="${member.age eq '60대'}">checked </c:if>>60대
-			</td>
-			</tr>
-			<tr height="30">
-			<td width="30">거주지 :</td>
-			<td width="70">
-				<input class="w3-input w3-border w3-light-grey" type="text" name="loc" size="10" value="${member.loc}" required="required">	
-			</td>
-			</tr>
-			
-			<tr height="30">
-			<td width="30" colspan="2">
-			<input class="w3-button w3-yellow w3-round" type="submit" value="정보수정">
-			<c:if test="${sessionEmail ne 'admin'}">
-			<input class="w3-button w3-yellow w3-round" type="button" value="탈퇴하기" onclick="window.location.href='deleteForm?email=${member.email}'">
-			<input class="w3-button w3-yellow w3-round" type="button" value="취소" onclick="window.location.href='${pageContext.request.contextPath}/index'">
-			</c:if>
-			<c:if test="${sessionEmail eq 'admin'}">
-			<input class="w3-button w3-yellow w3-round" type="button" value="목록" onclick="window.location.href='${pageContext.request.contextPath}/admin/memberlist'">
-			</c:if>
-			</td></tr>
-			</table>
-			</ul></form>
+		
+		<div class="w3-display-middle">
+			<div style="color:grey; text-align:center;">
+				<h3><b>회원 정보 수정</b></h3>
 			</div>
+			<br>
+			<div class="wrap-table100 w3-card" >
+			 <form  method="post" name="updateForm" onSubmit="return check()" action="${pageContext.request.contextPath}/member/updatePro">
+				<div class="table">
+						 <input type="hidden" name="email" value="${member.email}"/>	
+						<div class="row header">
+							<div class="cell">
+								<b>${member.name}님 !</b>
+							</div>
+							<div class="cell" >
+								<b>정보를 수정해주세요 !</b>	
+							</div>
+
+						</div>
+	
+						<div class="row">
+							<div class="cell">
+								이름
+							</div>
+							<div class="cell">
+								${member.name}
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="cell">
+								이메일
+							</div>
+							<div class="cell">
+								${member.email}
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="cell">
+								비밀번호
+							</div>
+							<div class="cell">
+								<c:if test="${sessionEmail ne 'admin'}">
+								<input class="w3-input w3-animate-input" style="width:50%;" type="password" name="pwd" size="20" value="${member.pwd}" required="required">
+								</c:if>
+								<c:if test="${sessionEmail eq 'admin'}">
+								<input class="w3-input w3-animate-input" style="width:50%;" type="text" name="pwd" size="20" value="${member.pwd}" required="required">
+								</c:if>
+							</div>
+						</div>
+						
+						<c:if test="${sessionEmail ne 'admin'}">
+							<div class="row">
+								<div class="cell">
+									비밀번호 확인
+								</div>
+								<div class="cell">
+									<input class="w3-input w3-animate-input" style="width:50%;"  type="password" name="confirmPwd" size="20" onkeyup="checkPwd()" required="required">
+									<div id="checkPwd"></div>
+								</div>
+							</div>
+						</c:if>
+						
+						<div class="row">
+							<div class="cell">
+								성별
+							</div>
+							<div class="cell">
+								${member.gender}
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="cell">
+								나이
+							</div>
+							<div class="cell">
+								 <input type="radio" name="age" value="10대" required="required" <c:if test="${member.age eq '10대'}">checked </c:if>>10대
+								 <input type="radio" name="age" value="20대" required="required" <c:if test="${member.age eq '20대'}">checked </c:if>>20대
+								 <input type="radio" name="age" value="30대" required="required" <c:if test="${member.age eq '30대'}">checked </c:if>>30대
+								 <input type="radio" name="age" value="40대" required="required" <c:if test="${member.age eq '40대'}">checked </c:if>>40대
+								 <input type="radio" name="age" value="50대" required="required" <c:if test="${member.age eq '50대'}">checked </c:if>>50대
+								 <input type="radio" name="age" value="60대" required="required" <c:if test="${member.age eq '60대'}">checked </c:if>>60대
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="cell">
+								거주지
+							</div>
+							<div class="cell">
+								<input class="w3-input w3-animate-input" style="width:50%;" type="text" name="loc" size="10" value="${member.loc}" required="required">	
+							</div>
+						</div>
+						
+						
+						<div class="row" >
+							<div class="cell">
+							</div>
+							<div class="cell" >
+								<input class="w3-btn w3-amber w3-round-xlarge" type="submit" value="정보수정">
+								<c:if test="${sessionEmail ne 'admin'}">
+								<input class="w3-btn w3-red w3-round-xlarge" type="button" value="탈퇴하기" onclick="window.location.href='deleteForm?email=${member.email}'">
+								<input class="w3-btn w3-amber w3-round-xlarge" type="button" value="취소" onclick="window.location.href='${pageContext.request.contextPath}/index'">
+								</c:if>
+								<c:if test="${sessionEmail eq 'admin'}">
+								<input class="w3-btn w3-amber w3-round" type="button" value="목록" onclick="window.location.href='${pageContext.request.contextPath}/admin/memberlist'">
+								</c:if>
+							</div>
+
+						</div>
+				</div>
+			 </form>
+			</div>
+		</div>				
+
 </body>
 </html>

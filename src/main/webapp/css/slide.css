@@ -5,7 +5,7 @@
 .contener_slideshow
 {
   width:610px;
-  height:300px;
+  height:400px;
   overflow: hidden;
   position: relative;
   background-image: url(img_diapo_fond.png);
@@ -14,7 +14,7 @@
 {
   position: absolute;
   width:610px;
-  height:300px;
+  height:400px;
 }
 .slid_1{left: 0;}
 .slid_2{left: 610px;}
@@ -25,7 +25,7 @@
 .contener_slide
 {
   width: 2440px;
-  height: 300px;
+  height: 400px;
   left:0px;
   position: absolute;
   -webkit-animation-duration: 30s;

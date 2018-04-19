@@ -21,10 +21,13 @@ public class MessageController {
 	MessageMyBatis dbPro = MessageMyBatis.getInstance();
 		
 	@RequestMapping("/sendmessageForm")
-	public String sendmessageForm(HttpServletRequest request,Model model) {
+	public String sendmessageForm(HttpServletRequest request,Model model,String userinfo2) {
 		
 		String userinfo = request.getParameter("userinfo");
 		
+		if (userinfo2!=null) {
+		model.addAttribute("userinfo2",userinfo2);
+		}
 		model.addAttribute("userinfo",userinfo);
 		
 		return "/message/sendmessageForm";

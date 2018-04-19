@@ -28,7 +28,7 @@
 	</c:if>
 	<c:if test="${userinfo !='mysend'}"> 
 	받는사람 <input class="w3-check" type="checkbox" name="check" onclick="mysend()">내게쓰기
-	<input type="text" name="userinfo2" size="32"/>
+	<input type="text" name="userinfo2" size="32" value="${userinfo2}"/>
 	</c:if>
 	</div><br/>  
 	<textarea class="w3-border w3-margin-bottom" name="sendmessage" rows="10" cols="50"></textarea>

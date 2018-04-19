@@ -16,26 +16,21 @@
 li{
 	display:inline;
 }
-
 .row {
   display: table-row;
   background: #fff;
 }
-
 .row.header {
   color: #ffffff;
   background: #FCB043;
 }
-
 @media screen and (max-width: 768px) {
   .row {
     display: block;
   }
-
   .row.header .cell {
     display: none;
   }
-
   .row .cell:before {
     line-height: 1.2;
     text-transform: uppercase;
@@ -46,12 +41,9 @@ li{
     display: block;
   }
 }
-
 .cell {
   display: table-cell;
 }
-
-
 .row .cell {
   color: #666666;
   line-height: 1.2;
@@ -59,48 +51,44 @@ li{
   padding-bottom: 15px;
   border-bottom: 1px solid #f2f2f2;
 }
-
 .row.header .cell {
   color: #fff;
   line-height: 1.2;
   text-align: left;
 }
-
 .row .cell:nth-child(1) {
   width: 100;
   text-align: center;
 }
-
 .row .cell:nth-child(2) {
   width: 150;
 }
-
 .row .cell:nth-child(3) {
   width: 250;
 }
-
 .row .cell:nth-child(4) {
-  width: 200;
+  width: 100;
 }
-
 .row .cell:nth-child(5) {
   width: 150;
 }
-
 .row .cell:nth-child(6) {
   width: 50;
+
+}
+.row .cell:nth-child(7) {
+  width: 100;
   text-align: center;
-  padding-right:40px;
+  padding-right:30px;
+  
 }
 
 .table, .row {
   width: 900px !important;
 }
-
 .row:hover {
   background-color: lightyellow;
 }
-
 @media (max-width: 768px) {
   .row {
     border-bottom: 1px solid #f2f2f2;
@@ -114,9 +102,7 @@ li{
     color: #555555;
     line-height: 1.2;
   }
-
 }
-
 </style>
 <body>
    <%@include file="/common/header.jsp" %>
@@ -187,8 +173,8 @@ li{
                         ${mylist.wcategory}
                      </div>
                      <div class="cell">
-                        <i style="cursor:pointer;" onclick="document.location.href='${pageContext.request.contextPath}/board/wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')">
-                        ${mylist.wname}</i>
+                        <a style="cursor:pointer;" onclick="document.location.href='${pageContext.request.contextPath}/board/wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')">
+                        ${mylist.wname}</a>
                      </div>
                      <div class="cell">
                         ${mylist.whost}
@@ -207,7 +193,7 @@ li{
                                  
                                  <button onclick="document.location.href='${pageContext.request.contextPath}/board/wagleOut2?wboardid=${mylist.wboardid}&wagleremail=${mylist3.wagleremail}'" class="w3-btn w3-round w3-small  w3-red w3-right">탈퇴</button>
                                  
-                                 <button onclick="document.location.href='${mylist3.wagleremail}'" class="w3-btn fa fa-envelope-o w3-round w3-yellow w3-right" style="margin-right:5px;"></button>
+                                 <button onclick="document.location.href='${pageContext.request.contextPath}/message/sendmessageForm?userinfo2=${mylist3.wagleremail}'" class="w3-btn fa fa-envelope-o w3-round w3-yellow w3-right" style="margin-right:5px;"></button>
                                  
                                  </i>
                               </c:forEach>
@@ -220,7 +206,7 @@ li{
                            onclick="document.location.href='${pageContext.request.contextPath}/board/wagleUpdate?wboardid=${mylist.wboardid}'">수정</button>
                      </div>
                     <div class="cell">
-                   		   <a  href="${pageContext.request.contextPath}/chat/GroupChat?${mylist}" class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
+                   		   <a  href="${pageContext.request.contextPath}/chat/GroupChat?wboardid=${mylist.wboardid}" class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
                           onclick="window.open(this.href,'','resizable=no, width=900, height=750, left=800, top=200'); return false;">채팅</a>
                     </div>       
                   </div>
@@ -229,13 +215,17 @@ li{
                </c:if>
                
                <div style="height:100px;">
+               
                </div>
+               
+            
+               
             <span class="w3-center w3-large" >
                   <h3>내가 <b>가입한</b> 와글</h3>
-            </span>
-            <div class="wrap-table100" >
+            </span><br>
+            <div class="wrap-table100" style="margin-bottom:100px;" >
          
-            <!-- 오픈한 와글이 존재하지 않을 때 -->
+            <!-- 가입한 와글이 존재하지 않을 때 -->
             <c:if test="${count2==0}">
             <div class="table w3-center">
                <div class="row header">
@@ -285,15 +275,15 @@ li{
                      </div>
                      
                      <div class="cell">
-                        <i style="cursor:pointer" onclick="document.location.href='${pageContext.request.contextPath}/board/wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')">
-                        ${mylist.wname}</i>
+                        <a style="cursor:pointer" onclick="document.location.href='${pageContext.request.contextPath}/board/wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')">
+                        ${mylist.wname}</a>
                      </div>
                      <div class="cell">
                         ${mylist.host}
                      </div>
                      <div class="cell">
                         <button onclick="document.location.href='${pageContext.request.contextPath}/board/wagleOut?wboardid=${mylist.wboardid}'" class="w3-btn w3-padding-small w3-round w3-red">탈퇴</button>
-                        <button  onclick="document.getElementById('reviewForm').style.display='block'"
+                        <button  onclick="document.getElementById('reviewForm${count2}').style.display='block'"
                         class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey">후기</button>
                         <%@include file="/WEB-INF/view/board/reviewForm.jsp" %>
                      </div>
@@ -304,12 +294,12 @@ li{
                          <div class="w3-dropdown-content w3-bar-block w3-border" style="width:250px;">
                             <i class="w3-bar-item w3-button" style="color:red;"><b>${mylist.host}</b>
                             &nbsp;&nbsp;
-                            <button onclick="document.location.href='${mylist.hostemail}'" class="w3-btn fa fa-envelope-o w3-round w3-yellow w3-right"></button>
+                            <button onclick="document.location.href='${pageContext.request.contextPath}/message/sendmessageForm?userinfo2=${mylist.whostemail}'" class="w3-btn fa fa-envelope-o w3-round w3-yellow w3-right"></button>
                             </i> 
                             <c:forEach var="mylist3" items="${mylist.member}">
                               <i class="w3-bar-item w3-button">${mylist3.wagler}
                               &nbsp;&nbsp;
-                              <button onclick="document.location.href='${mylist3.wagleremail}'" class="w3-btn fa fa-envelope-o w3-round w3-yellow w3-right"></button>
+                              <button onclick="document.location.href='${pageContext.request.contextPath}/message/sendmessageForm?userinfo2=${mylist3.wagleremail}'" class="w3-btn fa fa-envelope-o w3-round w3-yellow w3-right"></button>
                               </i>
                            </c:forEach>
                      
@@ -317,11 +307,8 @@ li{
                        </div>
                      </div>
                      <div class="cell">
-                   		   <a  href="${pageContext.request.contextPath}/chat/GroupChat?${mylist}" class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
+                   		   <a  href="${pageContext.request.contextPath}/chat/GroupChat?wboardid=${mylist.wboardid}" class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
                           onclick="window.open(this.href,'','resizable=no, width=900, height=750, left=800, top=200'); return false;">채팅</a>
-
-
-
                      </div>      
                   </div>
                   </c:forEach>
@@ -334,9 +321,7 @@ $(function(){
 $('.forweb').click(function(){ 
 myFunction(); 
 return false; 
-
 }); 
-
 function myFunction() { 
 window.open("${pageContext.request.contextPath}/chat/GroupChat", "_blank", "toolbar=no,scrollbars=no,resizable=no,top=0,left=0,width=370,height=620"); 
 } 

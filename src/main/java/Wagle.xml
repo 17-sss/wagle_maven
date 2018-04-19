@@ -61,7 +61,7 @@
 	
 	<!-- 이미지 슬라이드 -->
 	<select id="imgslide" resultType="Wagle">
-			select * from wagle_list where wagler IS NULL order by wboardid asc
+			select * from wagle_list where wagler IS NULL order by wboardid desc
 	</select>
 	
 	<!-- 와글장이 와글을 수정한다. -->

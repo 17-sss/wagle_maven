@@ -9,18 +9,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
+
+<script type="text/javascript">
+	
+	function check()
+	{
+		alert("후기가 작성되었습니다 !"); 
+	}
+</script>
 <body>
  
- <div id="reviewForm" class="w3-modal">
-		    <div class="w3-modal-content w3-animate-zoom w3-padding-small" style="max-width:40%">
+ <div id="reviewForm${count2}" class="w3-modal" onSubmit="return check()">
+		    <div class="w3-modal-content w3-animate-zoom w3-padding-small" style="max-width:70%">
 		      <div class="w3-container w3-padding-small">
-		        <span onclick="document.getElementById('reviewForm').style.display='none'" class="w3-button w3-display-topright">&times;</span> 
+		        <span onclick="document.getElementById('reviewForm${count2}').style.display='none'" class="w3-button w3-display-topright">&times;</span> 
 		       <form method="post" action="reviewinsert">
 		       			  <input type="hidden" name="boardid" value="${mylist.wboardid}">
 				  <table align="center" cellspacing="10" class="w3-white w3-padding-large">
 				    <c:if test="${sessionEmail != null}">
 				    <tr>
-				      <td><b>작성자</b>&nbsp;&nbsp;</td>
+				      <td width="20%"><b>작성자</b>&nbsp;&nbsp;</td>
 				      <td><a style="width:50%">${name}</a></td>
 				      <input type="hidden" name="writer" value="${name}"/>
 				    </tr>
@@ -32,7 +40,7 @@
 				    <tr>
 				       <td></td>
 				       <td class="w3-right">
-				       <button type="submit" class="w3-btn w3-round w3-yellow w3-padding-small w3-border w3-border-yellow">후기 작성</button>
+				       <button type="submit" class="w3-btn w3-round w3-amber w3-padding-small w3-border w3-border-yellow">후기 작성</button>
 				       </td>
 				    </tr>
 				    

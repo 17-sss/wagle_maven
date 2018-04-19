@@ -159,16 +159,16 @@
   
   <section class="background">
     <div class="content-wrapper" id="about">
-      <p class="content-title w3-display-topmiddle" style="margin-top: 200px;font-size: 7vh;">together is better</p>
+      <p class="content-title w3-display-topmiddle" style="margin-top: 200px;font-size: 7vh;"><b>together is better</b></p>
 		     <div class="w3-display-middle" style="width:40%; max-width:500px; margin-top:80px;">
 		    	<img src="${pageContext.request.contextPath}/img/together.jpg" alt="Norway" style="width:100%;">
 			 </div>
 	  	   <p class="content-subtitle w3-display-bottommiddle" style="margin-bottom:100px;">
-	  	   		비슷한 관심사와 가치관을 나눌 수 있는 소통의 공간<br/>
-	  	   		원하는 것을 배울 수 있는 자유<br/>
+	  	   		비슷한 관심사와 가치관을 나눌 수 있는 소통의 공간<br/><br>
+	  	   		원하는 것을 배울 수 있는 자유<br/><br>
 	  	   		함께 만들어가는 커뮤니티 </p>
-	      <button class="w3-btn w3-display-bottommiddle" onclick="document.location.href='${pageContext.request.contextPath}/member/joinForm'"
-	      style="width: 20%;">와글과 함께 하실래요?</button>
+	      <button class="w3-btn w3-display-bottommiddle w3-large w3-border w3-border-grey w3-round-xxlarge" onclick="document.location.href='${pageContext.request.contextPath}/member/joinForm'"
+	      style="width: 20%;"><b>와글</b>과 함께 하실래요?</button>
 
     </div>
   </section>
@@ -176,11 +176,11 @@
   <section class="background">
     <div class="content-wrapper">
       <p class="content-title">&nbsp;</p>
-      <p class="content-subtitle" style="font-size: 15pt; margin-top: 64px;">관심사 <b>카테고리</b></p>
-      <div id="chartHolder" style="height:650px; width:100%; margin-top: 80px;"></div>
+      <p class="content-subtitle" style="font-size: 6vh; margin-top: 64px;"><b>원하는 와글이 없다면 ?</b></p>
+      <div id="chartHolder" style="height:650px; width:100%;"></div>
       <div class="w3-center">
-     	 <button class="w3-btn" onclick="document.location.href='${pageContext.request.contextPath}/board/wagleOpen'"
-     	 style="width: 20%; margin-top: 240px;">와글지기가 되어주세요!</button>
+     	 <button class="w3-btn w3-display-bottommiddle w3-large w3-border w3-border-grey w3-round-xxlarge" onclick="document.location.href='${pageContext.request.contextPath}/board/wagleOpen'"
+     	 style="width: 20%; margin-top: 240px;"><b>와글 지기</b>가 되어주세요!</button>
       </div>
     </div>
   </section>
@@ -190,25 +190,25 @@
   
   <section class="background">
     <div class="content-wrapper">
-    
       <!-- image slide-  -->
       <div align="center" class="fond">
-          <div class="contener_slideshow" style="margin-top: 200px;">
+          <div class="contener_slideshow" style="margin-top: 200px; height:400px;">
+           
           <div class="contener_slide" 
-          		style="animation-duration: 10s;-moz-animation-duration: 10s; -webkit-animation-duration: 10s;-ms-animation-duration: 10s;">
+          		style="animation-duration: 10s;-moz-animation-duration: 10s; -webkit-animation-duration: 10s;-ms-animation-duration: 10s; height:400px;">
            <c:forEach var="imgslide" items="${imgslide}">
-                       <div class="slid_${number}"><a style="cursor:pointer;" onclick="document.location.href='wagleContent?wboardid=${imgslide.wboardid}&wname='+encodeURI('${imgslide.wname}')">
+              <div class="slid_${number}"><a style="cursor:pointer; height:400px;" onclick="document.location.href='wagleContent?wboardid=${imgslide.wboardid}&wname='+encodeURI('${imgslide.wname}')">
               <c:set var="number" value="${number-1}"/>
               <img src="${pageContext.request.contextPath}/wagleimg/${imgslide.filename}" style="width:610px; height:400px;">
               <div  class="w3-display-topleft w3-large w3-container w3-padding-16 w3-black">${imgslide.wname}</div>
               </a></div>
           </c:forEach> 
           </div>
-        </div>                                                                                                                                     
+         </div>
+         <button class="w3-btn w3-display-topmiddle w3-large w3-white w3-border w3-border-grey w3-round-xxlarge" onclick="document.location.href='${pageContext.request.contextPath}/board/waglelist'" 
+      	style="width:20%;color:grey; margin-top:850px;">더 많은 <b>와글</b>을 보러가실래요?</button>
+                                                                                                                                      
       </div>
-     
-      <button class="w3-btn w3-display-middle" onclick="document.location.href='${pageContext.request.contextPath}/board/waglelist'" 
-      	style="width: 20%; margin-top: 240px;">와글리스트 더보기</button>
     </div>
   </section>
 

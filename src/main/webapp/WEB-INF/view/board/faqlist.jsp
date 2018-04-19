@@ -23,7 +23,7 @@ body{
 	
 }
 #b1{
-	background-color:#FFFF24;
+	background-color:#FCB043;
 	
 	}
 #b2{
@@ -59,7 +59,7 @@ body{
 		btn1.style.backgroundColor = "#A6A6A6";
 		}		
 		var btn2 = document.getElementById(id+index);
-		btn2.style.backgroundColor = "#FFFF24";
+		btn2.style.backgroundColor = "#FCB043";
 		}
 	
 	function x_click(id) {
@@ -81,7 +81,7 @@ body{
 
 <body>
 <%@include file="/common/header.jsp" %>
-	<div id="p" style="width:1200px;">
+	<div id="p" style="width:1200px; margin-top:100px;">
 		<div>
 			<h2><b>FAQ</b></h2>
 			<h6><font color="gray">무엇을 도와드릴까요?</font></h6>
@@ -89,7 +89,7 @@ body{
 			<h6>-상담가능시간 : 월 ~ 금 09:00~18:00</h6>
 		</div>
 		
-		<div id="table" style="height:100%; padding-bottom:50px;">
+		<div id="table" class="w3-border" style="height:auto; padding-bottom:50px; margin-bottom:50px;">
 			
 			<div class="w3-center w3-margin-top">
 				<br/><br/>
@@ -109,7 +109,7 @@ body{
 		</button>
 					<center>
 			<div id="id1" class="w3-display-container" style="display:none;width:1000px;">
-  		<span onclick="this.parentElement.style.display='none'; x_click('q1');"class="w3-button w3-yellow w3-display-topright">x</span>
+  		<span onclick="this.parentElement.style.display='none'; x_click('q1');" class="w3-btn w3-border w3-border-amber w3-hover-amber w3-round-xxlarge w3-display-topright" style="color:grey;">X</span>
  		 	<p align="left">큰 행운이겠죠?</p>
  		 	<br>
 			</div>
@@ -128,7 +128,7 @@ body{
 		</button>
 					<center>
 			<div id="id2" class="w3-display-container" style="display:none;width:1000px;">
-  		<span onclick="this.parentElement.style.display='none'; x_click('q2');"class="w3-button w3-yellow w3-display-topright">x</span>
+  		<span onclick="this.parentElement.style.display='none'; x_click('q2');" class="w3-btn w3-border w3-border-amber w3-hover-amber w3-round-xxlarge w3-display-topright" style="color:grey;">X</span>
  		 	<p align="left">네 가능합니다.</p>
  		 	<br>
 			</div>
@@ -143,7 +143,7 @@ body{
 		</button>
 					<center>
 			<div id="id3" class="w3-display-container" style="display:none;width:1000px;">
-  		<span onclick="this.parentElement.style.display='none'; x_click('q3');"class="w3-button w3-yellow w3-display-topright">x</span>
+  		<span onclick="this.parentElement.style.display='none'; x_click('q3');" class="w3-btn w3-border w3-border-amber w3-hover-amber w3-round-xxlarge w3-display-topright" style="color:grey;">X</span>
  		 	<p align="left">와글 멤버십은 4개월(한 시즌) 단위로 운영되며 1-4월, 5-8월, 9-12월 이렇게 1년에 세 시즌이 진행됩니다.</p>
 			<br>
 			</div>
@@ -158,7 +158,7 @@ body{
 		</button>
 					<center>
 			<div id="id4" class="w3-display-container" style="display:none;width:1000px;">
-  		<span onclick="this.parentElement.style.display='none'; x_click('q4');"class="w3-button w3-yellow w3-display-topright">x</span>
+  		<span onclick="this.parentElement.style.display='none'; x_click('q4');" class="w3-btn w3-border w3-border-amber w3-hover-amber w3-round-xxlarge w3-display-topright" style="color:grey;">X</span>
  		 	<p align="left">모집 기간이 끝나고 시즌이 시작되고 나면 신청이 불가능합니다.</p>
  		 	<br>
 			</div>
@@ -173,7 +173,7 @@ body{
 		</button>
 					<center>
 			<div id="id5" class="w3-display-container" style="display:none;width:1000px;">
-  		<span onclick="this.parentElement.style.display='none'; x_click('q5');"class="w3-button w3-yellow w3-display-topright">x</span>
+  		<span onclick="this.parentElement.style.display='none'; x_click('q5');" class="w3-btn w3-border w3-border-amber w3-hover-amber w3-round-xxlarge w3-display-topright" style="color:grey;">X</span>
  		 	<p align="left">와글 홈페이지의 채팅으로 환불 신청하실 수 있습니다.<br/>
 							신청해주시면 최대 3영업일 내로 환불 완료됩니다. :) </p>
 			<br>

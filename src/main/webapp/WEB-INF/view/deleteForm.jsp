@@ -17,66 +17,150 @@
 		}
 	</script>
 	
-	
+<style>
+
+.row {
+  display: table-row;
+  background: #fff;
+}
+
+.row.header {
+  color: #ffffff;
+  background: #FCB043;
+}
+
+@media screen and (max-width: 768px) {
+  .row {
+    display: block;
+  }
+
+  .row.header .cell {
+    display: none;
+  }
+
+  .row .cell:before {
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: unset !important;
+    margin-bottom: 13px;
+    content: attr(data-title);
+    min-width: 98px;
+    display: block;
+  }
+}
+
+.cell {
+  display: table-cell;
+}
+
+
+.row .cell {
+  color: #666666;
+  line-height: 1.2;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.row.header .cell {
+  color: #fff;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.row .cell:nth-child(1) {
+  width: 800px;
+  text-align: center;
+}
+
+.table, .row {
+  width: 800px !important;
+}
+
+
+@media (max-width: 768px) {
+  .row {
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 18px;
+    padding-top: 30px;
+    padding-right: 15px;
+    margin: 0;
+  }
+  
+  .row .cell {
+    color: #555555;
+    line-height: 1.2;
+  }
+
+}
+</style>
+
 </head>
 <body>
 <%@include file="/common/header.jsp" %>
-<div class="w3-container" style="margin-top: 13%;">
-<!-- <p class="w3-left" style="padding-left: 30px;"></p> -->
-<center>
-<div class="w3-container w3-border w3-card w3-round w3-padding-32" style="margin: 0% 20% 0% 20%;">
-<c:if test="${sessionEmail ne 'admin'}">
-<h3><b>Wagle을 탈퇴하시겠습니까?</b></h3><br>
-</c:if>
-<c:if test="${sessionEmail eq 'admin'}">
-<h3><b>${email} 멤버를 삭제하시겠습니까?</b></h3><br>
-</c:if>
-<c:if test="${sessionEmail ne 'admin'}">
-<form method="post" name="deleteForm" action="deletePro?email=${sessionEmail}" onsubmit="return deleteSave()">
-</c:if>
-<c:if test="${sessionEmail eq 'admin'}">
-<form method="post" name="deleteFormA" action="deletePro?email=${email}" onSubmit="return Acheck()">
-</c:if>
-				
-				<table class="table-bordered" width="190">
-					<tr height="30">
-						<td align="center"><b>비밀번호를 입력해 주세요.</b></td>
-					</tr>
-					<tr height="30">
-					
-						<td align="center">
-							<c:if test="${sessionEmail eq 'admin'}">
-							관리자 비밀번호: <input type="password" name="pwd" size="8" maxlength="12" > 
-							<input type="hidden" name="sessionPwd" value="${sessionPwd}">
-							
-							<input type="hidden" name="email" value="${email}">
-							</c:if>
-							
+		<div class="w3-display-topmiddle" style="margin-top:250px;">
+			<div style="color:grey; text-align:center;">
+				<h3><b>회원 탈퇴</b></h3>
+			</div>
+			<br>
+			<div class="wrap-table100 w3-card" >
+				<div class="table">
+						<div class="row header">
 							<c:if test="${sessionEmail ne 'admin'}">
-							비밀번호: <input type="password" name="pwd" size="8" maxlength="12"> 
-							<input type="hidden" name="email" value="${sessionEmail}">
+								<div class="cell">
+									<b>${name}님! 정말로 탈퇴하실건가요?</b>
+								</div>
 							</c:if>
-							
-						</td>
-					</tr>
-					<tr height="30">
-						<td align="center">
+							<c:if test="${sessionEmail eq 'admin'}">
+								<div class="cell">
+									<b>${email} 멤버를 삭제하시겠습니까?</b>
+								</div>
+							</c:if>
+						</div>
+				
 						<c:if test="${sessionEmail ne 'admin'}">
-							<input type="submit" value="탈퇴" class="w3-button w3-amber w3-round"> 
-							<input type="button" value="취소" class="w3-button w3-amber w3-round" onclick="document.location.href='updateForm?email=${sessionEmail}'">
+						<form method="post" name="deleteForm" action="deletePro?email=${sessionEmail}" onsubmit="return deleteSave()">
 						</c:if>
 						<c:if test="${sessionEmail eq 'admin'}">
-							<input type="submit" value="삭제" class="w3-button w3-amber w3-round"> 
-							<input type="button" value="취소" class="w3-button w3-amber w3-round" onclick="document.location.href='${pageContext.request.contextPath}/admin/memberlist'">
+						<form method="post" name="deleteFormA" action="deletePro?email=${email}" onSubmit="return Acheck()">
 						</c:if>
-						</td>
-					</tr>
-				</table>
-				
-			</form>
-</div>
 
-</center>
-</div>
+
+						<div class="row">
+							<div class="cell">
+								비밀번호를 입력해 주세요.
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="cell">
+								<c:if test="${sessionEmail eq 'admin'}">
+								관리자 비밀번호: <input type="password" name="pwd" size="8" maxlength="12" > 
+											<input type="hidden" name="sessionPwd" value="${sessionPwd}">
+											<input type="hidden" name="email" value="${email}">
+								</c:if>
+								<c:if test="${sessionEmail ne 'admin'}">
+								비밀번호: 	<input type="password" name="pwd" size="8" maxlength="12"> 
+									   	<input type="hidden" name="email" value="${sessionEmail}">
+								</c:if>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="cell">
+								<c:if test="${sessionEmail ne 'admin'}">
+									<input type="submit" value="탈퇴" class="w3-btn w3-red w3-round-xlarge"> 
+									<input type="button" value="취소" class="w3-btn w3-amber w3-round-xlarge" onclick="document.location.href='updateForm?email=${sessionEmail}'">
+								</c:if>
+								<c:if test="${sessionEmail eq 'admin'}">
+									<input type="submit" value="삭제" class="w3-button w3-amber w3-round-xlarge"> 
+									<input type="button" value="취소" class="w3-button w3-amber w3-round-xlarge" onclick="document.location.href='${pageContext.request.contextPath}/admin/memberlist'">
+								</c:if>
+							</div>
+						</div>
+					</form>	
+				</div>
+			</div>
+		</div>
 </body>
 </html>

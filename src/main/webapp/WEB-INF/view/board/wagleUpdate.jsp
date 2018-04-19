@@ -48,30 +48,35 @@
 </head>
 <body>
 <%@include file="/common/header.jsp" %>
-	<center >
+	<center>
+	<div class="w3-round w3-card-4 w3-padding-large" style="width:40%; margin-top:100px; margin-bottom:110px;">
 	<form method="post" enctype="multipart/form-data" action="wagleUpdatePro">
-		<h4 style="margin-top: 3em;">Wagle Update</h4>
-	
+		<br>
 		<input type="hidden" name="whost" value="${wagle.whost}"/>
 		<input type="hidden" name="wboardid" value="${wagle.wboardid}"/>
 		<input type="hidden" name="name" value="${wagle.filename}"/>
 		<input type="hidden" name="size" value="${wagle.filesize}"/>
 		<input type="hidden" name="pageNum"	value="${pageNum}"/>
-			<table class="w3-table-w3-border" cellspacing="10" style="margin-bottom:100px;">
-				<tr>
-				<td class="w3-panel w3-leftbar w3-border-yellow">와글 이름</td>
+		<h2><b>와글 수정</b></h2>
+		<table class="w3-table " cellspacing="20">
+			
+			<tr>
+				<td class="w3-leftbar w3-border-yellow">와글 이름</td>
 				<td><input class="w3-input w3-animate-input" style="width:50%" name="wname" type="text" value="${wagle.wname}"></td>
-				</tr>
-				<tr>
-				<td class="w3-panel w3-leftbar w3-border-yellow">와글장</td>
+			</tr>
+		
+			<tr>
+				<td class="w3-leftbar w3-border-yellow">와글 지기</td>
 				<td>${wagle.whost}</td>
-				</tr>
-				<tr>
-				<td class="w3-panel w3-leftbar w3-border-yellow">와글장 소개</td>
-				<td><textarea class="w3-input w3-border w3-margin-bottom" name="wprofile" rows="4" cols="10">${wagle.wprofile}</textarea></td>
-				</tr> 
-				<tr>
-				<td class="w3-panel w3-leftbar w3-border-yellow">카테고리</td>
+			</tr>
+		
+			<tr>
+				<td class="w3-leftbar w3-border-yellow">와글 지기 소개</td>
+				<td><textarea class="w3-input w3-border" name="wprofile" rows="4" cols="15">${wagle.wprofile}</textarea></td>
+			</tr>
+			
+			<tr>
+			<td class="w3-leftbar w3-border-yellow">카테고리</td>
 				<td>
 				
 					<select name="wcategory">
@@ -80,24 +85,14 @@
 					  <option  value="요리/음식" <c:if test="${wagle.wcategory eq '요리/음식'}"> selected </c:if>>요리/음식</option>
 					  <option  value="인문학/책" <c:if test="${wagle.wcategory eq '인문학/책'}"> selected </c:if>>인문학/책</option>
 					</select>
-					
-				 <!-- 
-				  <td class="btn-group">
-				  <button type="button" name="wcategory" value="스포츠">스포츠</button>
-				  <button type="button" name="wcategory" value="여행">여행</button>
-				  <button type="button" name="wcategory" value="요리/음식">요리/음식</button>
-				  <button type="button" name="wcategory" value="인문학/책">인문학/책</button>
-				  <br><br>
-				  <button type="button" name="wcategory" value="문화/공연">문화/공연</button>
-				  <button type="button" name="wcategory" value="음악/악기">음악/악기</button>
-				  <button type="button" name="wcategory" value="사교/인맥">사교/인맥</button>
-				  <button type="button" name="wcategory" value="봉사활동">봉사활동</button> -->
 				</td>
-				</tr>
-				<tr>
-				<td class="w3-panel w3-leftbar w3-border-yellow">최대 인원</td>
+			</tr>
+			
+			
+			<tr>
+				<td class="w3-leftbar w3-border-yellow">최대 인원</td>
 				<td>
-					현재 회원수 ${all}명 /
+					<b>현재 회원수&nbsp;</b> ${all}명 /
 					<select name="wmax">
 					  <option  value="15" <c:if test="${wagle.wmax==15}"> selected </c:if>>15명</option>
 					  <option  value="16" <c:if test="${wagle.wmax==16}"> selected </c:if>>16명</option>
@@ -107,21 +102,23 @@
 					  <option  value="20" <c:if test="${wagle.wmax==20}"> selected </c:if>>20명</option>
 					</select>
 				</td>
-				</tr>
-				<tr>
-				<td class="w3-panel w3-leftbar w3-border-yellow">지역</td>
+			</tr>
+		
+				
+			<tr>
+				<td class="w3-leftbar w3-border-yellow">지역</td>	
 				<td>
 					<input type="radio" class="w3-radio" name="wloc" value="서울특별시 마포구 월드컵북로 21"
 					<c:if test="${wagle.wloc eq '서울특별시 마포구 월드컵북로 21'}">checked</c:if>>&nbsp;강북 &nbsp;&nbsp;
   					<input type="radio" class="w3-radio" name="wloc" value="서울특별시 강남구 테헤란로 132 한독약품빌딩 8층 쌍용교육센터"
   					<c:if test="${wagle.wloc eq '서울특별시 강남구 테헤란로 132 한독약품빌딩 8층 쌍용교육센터'}">checked</c:if>>&nbsp;강남
 				</td>
-				</tr>
-				<tr>
-
+			</tr>
 				
+
+			<tr>
 				<c:if test="${today > wagle.wend}">
-				<td class="w3-panel w3-leftbar w3-border-yellow" style="color:red"><b>기간</b></td>
+				<td class="w3-panel w3-leftbar w3-border-red" style="color:red"><b>기간</b></td>
 				</c:if>
 				<c:if test="${today <= wagle.wend}">
 				<td class="w3-panel w3-leftbar w3-border-yellow">기간</td>
@@ -130,32 +127,36 @@
 				<input type="text" name="wstart" id="datepicker" value="${wagle.wstart}">&nbsp;&nbsp;~&nbsp;&nbsp;
 				<input type="text" name="wend" id="datepicker2" value="${wagle.wend}">
 				</td>
-				</tr>
+			</tr>
+				
+				
 				
 				<c:if test="${today > wagle.wend}">
 				<tr>
 				<td></td>
-				<td style="color:red">기간을 늘려주세요 !</td>
+				<td style="color:red">기간을 수정해주세요 !</td>
 				</tr>
 				</c:if>
 					
 				<tr>
 				<c:if test="${today > wagle.weventdate1 || today > wagle.weventdate2}">
-				<td class="w3-panel w3-leftbar w3-border-yellow" style="color:red;"><b>다가오는 일정</b></td></c:if>
+				<td class="w3-leftbar w3-border-red" style="color:red;"><b>다가오는 일정</b></td></c:if>
 				
 				<c:if test="${today <= wagle.weventdate1 && today <= wagle.weventdate2}">
-				<td class="w3-panel w3-leftbar w3-border-yellow">다가오는 일정</td></c:if>
+				<td class="w3-leftbar w3-border-yellow">다가오는 일정</td></c:if>
 				<td>
+				
 				<c:if test="${today > wagle.weventdate1}"><a style="color:red;"></c:if>
 				<c:if test="${today <= wagle.weventdate1}"><a></c:if>
-				일정1:</a>
-				<input type="text" name="wevent1" value="${wagle.wevent1}">
+
+				<b>1 : </b></a>
+				<input style="width:50%; border-top:0; border-left:0; border-right:0;" type="text" name="wevent1" value="${wagle.wevent1}">
 				<input type="text" name="weventdate1" id="datepicker3" value="${wagle.weventdate1}"><br>
-				
+				<br>
 				<c:if test="${today > wagle.weventdate2}"><a style="color:red;"></c:if>
 				<c:if test="${today <= wagle.weventdate2}"><a></c:if>
-				일정2:</a>
-				<input type="text" name="wevent2" value="${wagle.wevent2}">
+				<b>2 : </b></a>
+				<input style="width:50%; border-top:0; border-left:0; border-right:0;" type="text" name="wevent2"  value="${wagle.wevent2}">
 				<input type="text" name="weventdate2" id="datepicker4" value="${wagle.weventdate2}">
 				</td>
 				</tr>
@@ -163,31 +164,33 @@
 				<c:if test="${today > wagle.weventdate1 || today > wagle.weventdate2}">
 				<tr>
 				<td></td>
-				<td style="color:red">일정을 바꿔주세요 !</td>
+				<td style="color:red">일정을 수정해주세요 !</td>
 				</tr>
 				</c:if>
 				
 				
-				
 				<tr style="width:200px; height:200px">
-				<td class="w3-panel w3-leftbar w3-border-yellow">와글 소개</td>
-				<td><textarea class="w3-input w3-border w3-margin-bottom" name="wintro" rows="4" cols="10">${wagle.wintro}</textarea></td>
+					<td class="w3-leftbar w3-border-yellow">와글 소개</td>
+					<td><textarea class="w3-input w3-border w3-margin-bottom" name="wintro" rows="4" cols="15">${wagle.wintro}</textarea></td>
 				</tr>
+				
 				<tr>
-				<td class="w3-panel w3-leftbar w3-border-yellow">그룹이미지<br/>업로드</td>
-				<td>
-				<img src="${pageContext.request.contextPath}/wagleimg/${wagle.filename}" style="height:300px; width:300px;">
-				<br><br>
-				<input class="w3-input w3-border" name="uploadfile" type="file"></td>
+					<td class="w3-leftbar w3-border-yellow">그룹이미지<br/>업로드</td>
+					<td>
+					<img src="${pageContext.request.contextPath}/wagleimg/${wagle.filename}" style="height:300px; width:300px;">
+					<br><br>
+					<input class="w3-input w3-border" name="uploadfile" type="file"></td>
 				</tr>
+				
 				<tr>
 				<td colspan="2" class="w3-center">
-				<button class="w3-button w3-yellow w3-border" type="submit">수정</button>
-				<a class="w3-button w3-red w3-border" onclick="document.location.href='wagleDelete?wboardid=${wagle.wboardid}'">삭제</a>
+				<button class="w3-btn w3-yellow w3-round" type="submit">수정</button>
+				<a class="w3-btn w3-red w3-round" onclick="document.location.href='wagleDelete?wboardid=${wagle.wboardid}'">삭제</a>
 				</td>
 				</tr>
 			</table>
-	</form>	
+	</form>
+	</div>
 	</center>
 </body>
 </html>

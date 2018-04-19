@@ -43,11 +43,13 @@ public class BoardController{
 	public void addAttributes(String wboardid,String pageNum) {
 		if (wboardid!=null) {
 			this.wboardid = wboardid;
-		}
-		
-		if (pageNum!=null  && pageNum !="") {
+			
+		if (pageNum!=null  && pageNum !="" ) {
 			this.pageNum = pageNum;
 		}
+		}
+		
+	
 
 	}
 	
@@ -270,7 +272,7 @@ public class BoardController{
 	@RequestMapping("/wagleContent")
 	public String wagleContent(HttpServletRequest req,int wboardid,Model mv)  throws Throwable {
 		
-
+	
 		WagleDataBean wagle = dbWagle.getWagle(wboardid);
 		
 		HttpSession session=req.getSession();

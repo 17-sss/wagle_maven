@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,11 @@
 </div>
 </div>
 <div class="w3-center w3-quarter">우리 와글원
-		</div>
+	 <br><b style="color:blue;">${host}</b><br>
+	 <c:forEach var="member" items="${member}">
+	 	${member.wagler}<br>
+	 </c:forEach>
+</div>
 </div>
 </form>
 </body>
