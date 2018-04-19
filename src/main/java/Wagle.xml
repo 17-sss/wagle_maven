@@ -84,6 +84,10 @@
 			select * from wagle_list where wagler IS NULL order by wboardid desc
 	</select>
 	
+	<select id="getWaglelistSearch" parameterType="hashmap" resultType="Wagle">
+			select * from wagle_list where wagler IS NULL and wname like #{wname} order by wboardid desc
+	</select>
+	
 	<select id="searchWaglelist" parameterType="hashmap" resultType="Wagle">
 			select * from wagle_list where wagler IS NULL and wcategory=#{wcategory} order by wboardid desc
 	</select>
@@ -103,6 +107,11 @@
 	<select id="waglechk" parameterType="hashmap" resultType="map">
 			select * from wagle_list where wboardid=#{wboardid} and wagleremail=#{wagleremail}
 	</select>
+	
+	<!-- 와글 조회수  -->
+	<update id="plusReadCount" parameterType="hashmap">
+		update wagle_list set wreadcount=wreadcount+1 where wboardid = #{wboardid}
+	</update>
 	
 	<!-- ============ 관리자 - 그룹 목록 출력 =============== -->
 	<select id="getWaglelist_ad" parameterType="hashmap" resultType="Wagle">

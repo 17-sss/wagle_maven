@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<title>Insert title here</title>
 </head>
+<%@include file="/common/header.jsp" %>
 <body>
 <div class="w3-container w3-half w3-display-middle" style="width:40%;">
     <form class="w3-container w3-transparent" method="post" name="updateForm" action="${pageContext.request.contextPath}/admin/wagleDelete_ad">

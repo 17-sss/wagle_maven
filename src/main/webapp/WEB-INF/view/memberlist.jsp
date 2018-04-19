@@ -8,9 +8,10 @@
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<title>Insert title here</title>
 </head>
+<%@include file="/common/header.jsp" %>
 <body>
 <div>&nbsp;
-	<div class="w3-container w3-card w3-center" style="margin: 1% 20% 0 20%;">
+	<div class="w3-container w3-card w3-center" style="margin: 2% 20% 0 20%;">
 	       <span class="w3-center w3-large">
 				<h3>관리자 <b>회원</b> 관리</h3>
 		  </span>
@@ -19,8 +20,23 @@
 	       <div class="w3-container w3-white w3-round w3-margin">
 	       		 <div class="w3-center w3-container">
 	       			<h4 class="w3-yellow">가입한 회원이 없습니다</h4>
-	       		</div>	
+	       		</div>
+	       		
+	       		<form class="w3-white" method="post" name="memberlist">
+			       <div class="w3-center w3-margin-top w3-margin-bottom">
+			       		<select class="w3-border" style="display: inline-block;" name="opt" >
+							<option class="w3-text-gray" value="" disabled>Search</option>
+				   			<option value="1" selected>Email</option>
+				   			<option value="2">Name</option>
+		      			</select>
+			       		<input type="text" class="w3-border" placeholder="검색..." name="condition">
+			       		<input type="submit" class="w3-yellow w3-small w3-button" value="Search" style="display: inline-block;">
+			       </div>
+	      		</form>	
+	      		
 	       </div>
+	       
+	       
 	       </c:if>
 	       
 	       <c:if test="${count!=0}">
@@ -79,6 +95,18 @@
 	          </c:forEach>
 	           
 	       </table>
+	       
+	       <form class="w3-white" method="post" name="memberlist">
+	       <div class="w3-center w3-margin-top w3-margin-bottom">
+	       		<select class="w3-border" style="display: inline-block;" name="opt" >
+					<option class="w3-text-gray" value="" disabled>Search</option>
+		   			<option value="1" selected>Email</option>
+		   			<option value="2">Name</option>
+      			</select>
+	       		<input type="text" class="w3-border" placeholder="검색..." name="condition">
+	       		<input type="submit" class="w3-yellow w3-small w3-button" value="Search" style="display: inline-block;">
+	       </div>
+	       </form>
 	       
 	       <div class = "w3-center w3-white w3-margin">
 	       		<c:if test="${count>0}"> 

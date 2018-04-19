@@ -1,4 +1,4 @@
-<!-- sample (ÇöÀç index¿¡ ÇÕÄ§) include file ¾Æ´Ô -->
+<!-- sample (ÇöÀç index¿¡ ÇÕÄ§) include file ¾Æ´Ô / ¾È¾¸. -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    

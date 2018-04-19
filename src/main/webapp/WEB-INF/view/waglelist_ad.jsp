@@ -8,9 +8,10 @@
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<title>Insert title here</title>
 </head>
+<%@include file="/common/header.jsp" %>
 <body>
 <div>&nbsp;
-	<div class="w3-container w3-card w3-center" style="margin: 1% 20% 0 20%;">
+	<div class="w3-container w3-card w3-center" style="margin: 2% 20% 0 20%;">
 	       <span class="w3-center w3-large">
 				<h3>包府磊 <b>客臂</b> 包府</h3>
 		  </span>

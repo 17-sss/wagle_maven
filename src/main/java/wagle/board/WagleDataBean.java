@@ -22,7 +22,7 @@ public class WagleDataBean {
 	  private String wevent2;
 	  private String weventdate1;
 	  private String weventdate2;
-	  
+	  private int wreadcount;
 	  private String filename;
 	  private int filesize;
 	  
@@ -204,14 +204,27 @@ public class WagleDataBean {
 	public void setFilesize(int filesize) {
 		this.filesize = filesize;
 	}
-	
+
+	public int getWreadcount() {
+		return wreadcount;
+	}
+
+	public void setWreadcount(int wreadcount) {
+		this.wreadcount = wreadcount;
+	}
+
 	@Override
 	public String toString() {
-		return "WagleDataBean [wboardid=" + wboardid + ", wname=" + wname + ", whost=" + whost + ", wagler=" + wagler
-				+ ", wmax=" + wmax + ", wprofile=" + wprofile + ", wintro=" + wintro + ", wcategory=" + wcategory
-				+ ", wloc=" + wloc + ", wstart=" + wstart + ", wend=" + wend + ", filename=" + filename + ", filesize="
-				+ filesize + "]";
+		return "WagleDataBean [wboardid=" + wboardid + ", wname=" + wname + ", whost=" + whost + ", whostemail="
+				+ whostemail + ", wagler=" + wagler + ", wagleremail=" + wagleremail + ", wmax=" + wmax + ", wprofile="
+				+ wprofile + ", wintro=" + wintro + ", wcategory=" + wcategory + ", wloc=" + wloc + ", wstart=" + wstart
+				+ ", wend=" + wend + ", wevent1=" + wevent1 + ", wevent2=" + wevent2 + ", weventdate1=" + weventdate1
+				+ ", weventdate2=" + weventdate2 + ", wreadcount=" + wreadcount + ", filename=" + filename
+				+ ", filesize=" + filesize + ", host=" + host + ", hostemail=" + hostemail + ", member=" + member
+				+ ", all=" + all + "]";
 	}
+	
+	
 
 	
 	  

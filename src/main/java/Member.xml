@@ -47,13 +47,35 @@
       	SELECT pwd FROM wagle_member WHERE email = #{email}
       </select>
       
-      <select id="getMemberCount" resultType="int">
+     
+      <!-- 회원 수 -->
+ 	  <select id="getMemberCount" resultType="int">
 		SELECT nvl(count(*),0) FROM wagle_member
 	  </select>
+	  
+	  <select id="getMemberCountEmail" resultType="int" parameterType="hashmap">
+		SELECT nvl(count(*),0) FROM wagle_member where email like #{email}
+	  </select>
+	  
+	  <select id="getMemberCountName" resultType="int" parameterType="hashmap">
+		SELECT nvl(count(*),0) FROM wagle_member where name like #{name} 
+	  </select>
 	
+	   <!-- 회원리스트 출력 -->
 	  <select id="getMembers" parameterType="hashmap" resultType="Member">
 		select * from (select rownum rnum, a.* from (select num, email, pwd, name, gender, age, loc, regdate, pwdQ, pwdA from 
 		wagle_member order by num desc)a) where rnum between #{startRow} and #{endRow}
 	  </select>
+	  
+	  <select id="getMembersEmail" parameterType="hashmap" resultType="Member">
+		select * from (select rownum rnum, a.* from (select num, email, pwd, name, gender, age, loc, regdate, pwdQ, pwdA from 
+		wagle_member where email like #{email} order by num desc)a) where rnum between #{startRow} and #{endRow}
+	  </select>
+	  
+	  <select id="getMembersName" parameterType="hashmap" resultType="Member">
+		select * from (select rownum rnum, a.* from (select num, email, pwd, name, gender, age, loc, regdate, pwdQ, pwdA from 
+		wagle_member where name like #{name} order by num desc)a) where rnum between #{startRow} and #{endRow}
+	  </select>
+	  <!--  -->
 	
 </mapper>

@@ -173,6 +173,28 @@ public class MemberDBMybatis extends MybatisConnector{
 				sqlSession.close();
 				return x;
 			}
+			
+			public int getMemberCountEmail(String email) {
+				int x = 0;
+				sqlSession=sqlSession();
+				Map map = new HashMap();
+				map.put("email", email);
+				x = sqlSession.selectOne(namespace+".getMemberCountEmail", map);
+				sqlSession.close();
+				return x;
+			}
+			
+			public int getMemberCountName(String name) {
+				int x = 0;
+				sqlSession=sqlSession();
+				Map map = new HashMap();
+				map.put("name", name);
+				x = sqlSession.selectOne(namespace+".getMemberCountName", map);
+				sqlSession.close();
+				return x;
+			}
+			
+			
 						
 			// 회원리스트 목록출력 메소드?
 			public List getMembers(int startRow, int endRow) {
@@ -181,6 +203,28 @@ public class MemberDBMybatis extends MybatisConnector{
 				map.put("startRow", startRow);
 				map.put("endRow", endRow);
 				List li = sqlSession.selectList(namespace + ".getMembers",map);
+				sqlSession.close();
+				return li;
+			}
+			
+			public List getMembersEmail(int startRow, int endRow, String email) {
+				sqlSession= sqlSession();
+				Map map = new HashMap();
+				map.put("startRow", startRow);
+				map.put("endRow", endRow);
+				map.put("email", email);
+				List li = sqlSession.selectList(namespace + ".getMembersEmail",map);
+				sqlSession.close();
+				return li;
+			}
+			
+			public List getMembersName(int startRow, int endRow, String name) {
+				sqlSession= sqlSession();
+				Map map = new HashMap();
+				map.put("startRow", startRow);
+				map.put("endRow", endRow);
+				map.put("name", name);
+				List li = sqlSession.selectList(namespace + ".getMembersName",map);
 				sqlSession.close();
 				return li;
 			}

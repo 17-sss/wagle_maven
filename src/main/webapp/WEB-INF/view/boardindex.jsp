@@ -7,69 +7,6 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<link rel="stylesheet" href="https://www.koolchart.com/demo/KoolChart/Assets/Css/KoolChart.css"/>
-	<link rel="stylesheet" href="https://www.koolchart.com/demo/Samples/Web/sample.css"/>
-	<script src="https://www.koolchart.com/demo/LicenseKey/codepen/KoolChartLicense.js"></script>
-	<script src="https://www.koolchart.com/demo/KoolChart/JS/KoolIntegration.js"></script>
-	<script type="text/javascript">
-	var chartVars = "KoolOnLoadCallFunction=chartReadyHandler";
-
-	KoolChart.create("chart1", "chartHolder", chartVars, "100%", "100%");
-
-	function chartReadyHandler(id) {
-	  document.getElementById(id).setLayout(layoutStr);
-	  document.getElementById(id).setData(makeData());
-	  setTimeout(changeData, 5000);
-	}
-
-	var layoutStr =
-	  '<KoolChart backgroundColor="#FFFFFF"  borderStyle="none" fontFamily="Noto Sans">'
-	   +'<WordCloudChart showDataTips="true">'
-	    +'<series>'
-	     +'<WordCloudSeries textField="text" weightField="weight">'
-	      +'<showDataEffect>'
-	       +'<SeriesInterpolate duration="1000"/>'
-	      +'</showDataEffect>'
-	      +'<fills>'
-	       +'<SolidColor color="#5586a4"/>'
-	       +'<SolidColor color="#40b2e6"/>'
-	       +'<SolidColor color="#ffa123"/>'
-	       +'<SolidColor color="#595c7b"/>'
-	       +'<SolidColor color="#ef8075"/>'
-	       +'<SolidColor color="#f8ba03"/>'
-	       +'<SolidColor color="#03b79a"/>'
-	       +'<SolidColor color="#a5d4e6"/>'
-	       +'<SolidColor color="#b79d7c"/>'
-	       +'<SolidColor color="#9e589e"/>'
-	      +'</fills>'
-	     +'</WordCloudSeries>'
-	    +'</series>'
-	   +'</WordCloudChart>'
-	  +'</KoolChart>';
-
-	function changeData(){
-	  document.getElementById("chart1").setData(makeData());
-	  setTimeout(changeData, 5000);
-	 }
-	
-	 // [수정] 프로젝트용
-	 function makeData(){
-	  var i, n,
-	   chartData = [];
-	   var data = [];
-	   <c:forEach items="${imgslide}" var="word">
-	   		data.push("${word.wname}");
-	   </c:forEach>
-	  
-	  for(i = 0, n = data.length ; i < n ; i += 1){
-	   chartData.push({
-	    text : data[i],
-	    weight : Math.floor(Math.random(10) * 100)
-	   });
-	  }
-	  return chartData;
-	 }
-	 </script>
   <!-- sidebar-->
   	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -87,6 +24,10 @@
   	<link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,500,700' rel='stylesheet' type='text/css'>
   	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/slide.css">  
    
+   <!-- word cloud -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.awesomeCloud-0.2.js"></script>
+	<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">  
 </head>
 <body>
   
@@ -177,7 +118,12 @@
     <div class="content-wrapper">
       <p class="content-title">&nbsp;</p>
       <p class="content-subtitle" style="font-size: 6vh; margin-top: 64px;"><b>원하는 와글이 없다면 ?</b></p>
-      <div id="chartHolder" style="height:650px; width:100%;"></div>
+      <div id="wordcloud" style="height:650px; width:100%; margin-top: 80px;">
+     		 <c:forEach var="word" items="${imgslide}">
+				<span data-weight="${word.wreadcount * 3.5}">${word.wname}</span>
+				<%-- ${Math.random() * 100} <- 랜덤  ||  ${word.wreadcount * 5} <= 조회수 --%>
+			 </c:forEach>
+      </div>
       <div class="w3-center">
      	 <button class="w3-btn w3-display-bottommiddle w3-large w3-border w3-border-grey w3-round-xxlarge" onclick="document.location.href='${pageContext.request.contextPath}/board/wagleOpen'"
      	 style="width: 20%; margin-top: 240px;"><b>와글 지기</b>가 되어주세요!</button>
@@ -215,7 +161,7 @@
 
 
   	<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js'></script>
-	<script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+	<!-- <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script> -->
     <script  src="${pageContext.request.contextPath}/js/parallax.js"></script>
 	<script>
 	function myAccFunc() {
@@ -243,6 +189,43 @@
 	    }
 	}
 	</script>
+	
+	<!-- wordcloud -->
+	<script>
+      $(document).ready(function() {
+         $("#wordcloud").awesomeCloud({
+            "size" : {
+               "grid" : 20,
+               "factor" : 1
+            },
+            "options" : {
+               "color" : "random-dark",
+               "rotationRatio" : 0.35
+            },
+            "font" : "'Helvetica Neue', Times, sans-serif",
+            "shape" : "circle"
+         });
+      });
+   </script>
+   
+   <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push([ '_setAccount', 'UA-36251023-1' ]);
+      _gaq.push([ '_setDomainName', 'jqueryscript.net' ]);
+      _gaq.push([ '_trackPageview' ]);
+
+      (function() {
+         var ga = document.createElement('script');
+         ga.type = 'text/javascript';
+         ga.async = true;
+         ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+               : 'http://www')
+               + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0];
+         s.parentNode.insertBefore(ga, s);
+      })();
+   </script>
+   <!-- end. wordcloud -->
 </body>
 
 </html>

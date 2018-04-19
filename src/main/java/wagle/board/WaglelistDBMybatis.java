@@ -153,6 +153,23 @@ public class WaglelistDBMybatis extends MybatisConnector{
 		return wagle;
 	}
 	
+	public WagleDataBean getWagle(int wboardid, String chk) {
+		sqlSession = sqlSession();
+		Map map = new HashMap();
+		map.put("wboardid", wboardid);
+		
+		if(chk.equals("wagleContent")) {
+			sqlSession.update(namespace+".plusReadCount", map);
+		}
+		
+		
+		WagleDataBean wagle = sqlSession.selectOne(namespace+".getWagle",map);
+		sqlSession.commit();
+		sqlSession.close();
+		
+		return wagle;
+	}
+	
 	public int updateWagle(WagleDataBean wagle) {
 		
 		sqlSession = sqlSession();
@@ -189,6 +206,16 @@ public class WaglelistDBMybatis extends MybatisConnector{
 			sqlSession = sqlSession();
 			
 			List li = sqlSession.selectList(namespace+".getWaglelist");
+			sqlSession.close();
+			return li;
+	}
+	 
+	 public List getWaglelist(String wname) {
+			sqlSession = sqlSession();
+			
+			Map map = new HashMap();
+			map.put("wname", wname);
+			List li = sqlSession.selectList(namespace+".getWaglelistSearch", map);
 			sqlSession.close();
 			return li;
 	}

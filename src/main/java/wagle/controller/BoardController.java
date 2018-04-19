@@ -43,13 +43,11 @@ public class BoardController{
 	public void addAttributes(String wboardid,String pageNum) {
 		if (wboardid!=null) {
 			this.wboardid = wboardid;
-			
-		if (pageNum!=null  && pageNum !="" ) {
-			this.pageNum = pageNum;
-		}
 		}
 		
-	
+		if (pageNum!=null  && pageNum !="") {
+			this.pageNum = pageNum;
+		}
 
 	}
 	
@@ -109,9 +107,7 @@ public class BoardController{
 
 	// 와글와글
 	@RequestMapping("/waglelist")
-	public String waglelist(HttpServletRequest req, Model model,String wcategory) throws Throwable {
-
-		
+	public String waglelist(HttpServletRequest req, Model model,String wcategory, String search) throws Throwable {
 		List waglelist = null;
 		List searchwaglelist = null;
 		HttpSession session=req.getSession();
@@ -127,9 +123,14 @@ public class BoardController{
 		String today = sdf.format(mTime);
 		System.out.println(wcategory);
 		
+		// wname 기준으로만 검색가능 =================================================
+		if (search != null) {
+			waglelist = dbWagle.getWaglelist("%" + search + "%");
+			System.out.println("============\n검색: "+search+"\n============");
+		} 
+		// ====================================================================
 		
 		if (wcategory==null || wcategory.equals("전체")) {
-			
 			model.addAttribute("waglelist",waglelist);
 		}
 		
@@ -141,6 +142,7 @@ public class BoardController{
 		
 		model.addAttribute("today",today);
 		model.addAttribute("wcategory",wcategory);
+		model.addAttribute("search", search);
 		
 		return "/board/waglelist";
 	}
@@ -272,8 +274,8 @@ public class BoardController{
 	@RequestMapping("/wagleContent")
 	public String wagleContent(HttpServletRequest req,int wboardid,Model mv)  throws Throwable {
 		
-	
-		WagleDataBean wagle = dbWagle.getWagle(wboardid);
+
+		WagleDataBean wagle = dbWagle.getWagle(wboardid, "wagleContent");
 		
 		HttpSession session=req.getSession();
 		String wagleremail=(String)session.getAttribute("sessionEmail");
