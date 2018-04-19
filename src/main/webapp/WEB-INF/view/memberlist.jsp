@@ -7,7 +7,14 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<title>Insert title here</title>
+	<style type="text/css">
+		.orangee {
+				color: #000 !important;
+				background-color: #FCB043 !important
+		}
+	</style>
 </head>
+
 <%@include file="/common/header.jsp" %>
 <body>
 <div>&nbsp;
@@ -19,7 +26,7 @@
 	       <c:if test="${count==0}">
 	       <div class="w3-container w3-white w3-round w3-margin">
 	       		 <div class="w3-center w3-container">
-	       			<h4 class="w3-yellow">가입한 회원이 없습니다</h4>
+	       			<h4 class="orangee">가입한 회원이 없습니다</h4>
 	       		</div>
 	       		
 	       		<form class="w3-white" method="post" name="memberlist">
@@ -30,7 +37,7 @@
 				   			<option value="2">Name</option>
 		      			</select>
 			       		<input type="text" class="w3-border" placeholder="검색..." name="condition">
-			       		<input type="submit" class="w3-yellow w3-small w3-button" value="Search" style="display: inline-block;">
+			       		<input type="submit" class="orangee w3-small w3-button" value="Search" style="display: inline-block;">
 			       </div>
 	      		</form>	
 	      		
@@ -44,18 +51,18 @@
 	       		<h6 class="w3-right">전체 회원 수:${count}</h6>
 	       
 	       <table class="w3-table w3-bordered w3-small" width="525">
-	       <tr class="w3-yellow w3-center">
-	       <td align="center" width="25" class="w3-center">NUM</td>
-	       <td align="center" width="50" class="w3-center">EMAIL</td>
-	       <td align="center" width="50" class="w3-center">PASSWORD</td>
-	       <td align="center" width="50" class="w3-center">NAME</td>
-	       <td align="center" width="50" class="w3-center">GENDER</td>   
-	       <td align="center" width="50" class="w3-center">AGE</td>
-	       <td align="center" width="50" class="w3-center">LOCATE</td>
-	       <td align="center" width="50" class="w3-center">PWD_Q</td>
-	       <td align="center" width="50" class="w3-center">PWD_A</td>
-	       <td align="center" width="50" class="w3-center">REGDATE</td>
-	       <td align="center" width="50" class="w3-center">Modified</td>
+	       <tr class="orangee w3-center">
+	       <td align="center" width="25" class="w3-center w3-text-white">NUM</td>
+	       <td align="center" width="50" class="w3-center w3-text-white">EMAIL</td>
+	       <td align="center" width="50" class="w3-center w3-text-white">PASSWORD</td>
+	       <td align="center" width="50" class="w3-center w3-text-white">NAME</td>
+	       <td align="center" width="50" class="w3-center w3-text-white">GENDER</td>   
+	       <td align="center" width="50" class="w3-center w3-text-white">AGE</td>
+	       <td align="center" width="50" class="w3-center w3-text-white">LOCATE</td>
+	       <td align="center" width="50" class="w3-center w3-text-white">PWD_Q</td>
+	       <td align="center" width="50" class="w3-center w3-text-white">PWD_A</td>
+	       <td align="center" width="50" class="w3-center w3-text-white">REGDATE</td>
+	       <td align="center" width="50" class="w3-center w3-text-white">Modified</td>
 	       </tr>
 	 
 	        <c:forEach var="member" items="${memberlist}">
@@ -82,7 +89,7 @@
 	  					
 						
 						<form method="post" action="${pageContext.request.contextPath}/member/deleteForm" style="display: inline-block;">
-							<input type="submit" class="w3-button w3-yellow w3-hover-white" value="삭제" >
+							<input type="submit" class="w3-button orangee w3-hover-white" value="삭제" >
 							
 							<!-- hidden으로 email, pwd가져오기!!!  -->
 		               		<input type="hidden" name="email" value="${member.email}">
@@ -104,7 +111,7 @@
 		   			<option value="2">Name</option>
       			</select>
 	       		<input type="text" class="w3-border" placeholder="검색..." name="condition">
-	       		<input type="submit" class="w3-yellow w3-small w3-button" value="Search" style="display: inline-block;">
+	       		<input type="submit" class="orangee w3-small w3-button" value="Search" style="display: inline-block;">
 	       </div>
 	       </form>
 	       
@@ -117,7 +124,7 @@
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<a href="memberlist?pageNum=${i}"> <c:if test="${i != currentPage}">[${i}]</c:if>
 							<c:if test="${i == currentPage}">
-								<font color='blue'>[${i}]</font>
+								<font color='orange'>[${i}]</font>
 							</c:if>
 						</a>
 					</c:forEach>

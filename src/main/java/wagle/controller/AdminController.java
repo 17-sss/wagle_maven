@@ -99,7 +99,7 @@ public class AdminController {
 	
 	// 관리자 - 그룹관리
 	@RequestMapping(value = "waglelist_ad")
-	public ModelAndView waglelist_ad (Model model, HttpServletRequest request, String pageNum) {
+	public ModelAndView waglelist_ad (Model model, HttpServletRequest request, String pageNum, String opt, String condition) {
 		ModelAndView mv = new ModelAndView();
 		
 		HttpSession session = request.getSession();
@@ -118,9 +118,24 @@ public class AdminController {
 		int number = 0;
 		List waglelist = null;
 		
-		count = dbWagle.getWagleCount_ad();
-		if (count > 0) {
-			waglelist = dbWagle.getWaglelist_ad(startRow, endRow);
+		if (opt == null) {
+			count = dbWagle.getWagleCount_ad();
+			if (count > 0) {
+				waglelist = dbWagle.getWaglelist_ad(startRow, endRow);
+				System.out.println("NULL NO CONDITION (기본값)");
+			}
+		} else if (opt.equals("1")) {
+			count = dbWagle.getWagleCount_adWNAME("%"+condition+"%");
+			if (count > 0) {
+				waglelist = dbWagle.getWaglelist_adWNAME(startRow, endRow, "%"+condition+"%");
+				System.out.println("=====검색=====\nWAGLE: " + condition + "\n=============");
+			}
+		} else if (opt.equals("2")) {
+			count = dbWagle.getWagleCount_adWHOST("%"+condition+"%");
+			if (count > 0) {
+				waglelist = dbWagle.getWaglelist_adWHOST(startRow, endRow, "%"+condition+"%");
+				System.out.println("=====검색=====\nWHOST: " + condition + "\n=============");
+			}
 		}
 		number = count - (currentPage - 1) * pageSize;
 
@@ -140,6 +155,8 @@ public class AdminController {
 		mv.addObject("pageCount", pageCount);
 		mv.addObject("number", number);
 		mv.addObject("endPage", endPage);
+		mv.addObject("condition", condition);
+		mv.addObject("opt", opt);
 		
 		
 		if (session.getAttribute("sessionEmail").equals("admin")) {

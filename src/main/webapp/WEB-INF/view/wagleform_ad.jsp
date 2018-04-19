@@ -7,6 +7,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<title>Insert title here</title>
+	<style type="text/css">
+		.orangee {
+				color: #000 !important;
+				background-color: #FCB043 !important
+		}
+	</style>
 </head>
 <%@include file="/common/header.jsp" %>
 <body>
@@ -14,7 +20,7 @@
     <form class="w3-container w3-transparent" method="post" name="updateForm" action="${pageContext.request.contextPath}/admin/wagleDelete_ad">
     <input type="hidden" name="wboardid" value="${wagle.wboardid}">
 		<ul class="w3-ul w3-hover-shadow">
-			<li class="w3-yellow w3-xlarge w3-center w3-padding-32" style="color: black; width:100%;">와글 정보</li>
+			<li class="orangee w3-xlarge w3-center w3-padding-32" style="width:100%;">와글 정보</li>
 			
 				<table class="w3-table w3-bordered" style="width:100%;">
 					<tr height="30">
@@ -34,6 +40,11 @@
 						</td>
 					</tr>
 					<tr height="30">
+						<td width="30">카테고리 :</td>
+						<td width="70">${wagle.wcategory}
+						</td>
+					</tr>
+					<tr height="30">
 						<td width="30">장소 :</td>
 						<td width="70">${wagle.wloc}
 						</td>
@@ -48,8 +59,8 @@
 					<tr height="30">
 						<td width="30" colspan="2">
 						<c:if test="${sessionEmail eq 'admin'}">
-						<input class="w3-button w3-yellow w3-round" type="submit" value="삭제">
-						<input class="w3-button w3-yellow w3-round" type="button" value="목록" onclick="window.location.href='${pageContext.request.contextPath}/admin/waglelist_ad'">
+						<input class="w3-button orangee w3-round" type="submit" value="삭제">
+						<input class="w3-button orangee w3-round" type="button" value="목록" onclick="window.location.href='${pageContext.request.contextPath}/admin/waglelist_ad'">
 						</c:if>
 						</td>
 					</tr>

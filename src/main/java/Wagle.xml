@@ -115,12 +115,32 @@
 	
 	<!-- ============ 관리자 - 그룹 목록 출력 =============== -->
 	<select id="getWaglelist_ad" parameterType="hashmap" resultType="Wagle">
-		select * from (select rownum rnum, a.* from (select wboardid, wname, whost from wagle_list where 
+		select * from (select rownum rnum, a.* from (select wboardid, wname, whost, wcategory, wreadcount from wagle_list where 
 		whost IS NOT NULL order by wboardid desc)a) where rnum between #{startRow} and #{endRow} 
 	</select>
 	
+	<select id="getWaglelist_adWNAME" parameterType="hashmap" resultType="Wagle">
+		select * from (select rownum rnum, a.* from (select wboardid, wname, whost, wcategory, wreadcount from wagle_list where 
+		whost IS NOT NULL and wname like #{wname} order by wboardid desc)a) where rnum between #{startRow} and #{endRow} 
+	</select>
+	
+	<select id="getWaglelist_adWHOST" parameterType="hashmap" resultType="Wagle">
+		select * from (select rownum rnum, a.* from (select wboardid, wname, whost, wcategory, wreadcount from wagle_list where 
+		whost IS NOT NULL and whost like #{whost} order by wboardid desc)a) where rnum between #{startRow} and #{endRow} 
+	</select>
+	
+	<!--  -->
+	
 	<select id="getWagleCount_ad" resultType="int">
 		SELECT nvl(count(*),0) FROM wagle_list where whost IS NOT NULL
+	</select>
+	
+	<select id="getWagleCount_adWNAME" resultType="int">
+		SELECT nvl(count(*),0) FROM wagle_list where whost IS NOT NULL and wname like #{wname} 
+	</select>
+	
+	<select id="getWagleCount_adWHOST" resultType="int">
+		SELECT nvl(count(*),0) FROM wagle_list where whost IS NOT NULL and whost like #{whost}
 	</select>
 	
 	<!-- ============================================ -->

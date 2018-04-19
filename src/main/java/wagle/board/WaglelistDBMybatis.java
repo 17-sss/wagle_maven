@@ -299,6 +299,30 @@ public class WaglelistDBMybatis extends MybatisConnector{
 		return li;
 	}
 	
+	public List getWaglelist_adWNAME (int startRow, int endRow, String wname) {
+		sqlSession= sqlSession();
+		Map map = new HashMap();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		map.put("wname", wname);
+		List li = sqlSession.selectList(namespace + ".getWaglelist_adWNAME",map);
+		sqlSession.close();
+		return li;
+	}
+	
+	public List getWaglelist_adWHOST (int startRow, int endRow, String whost) {
+		sqlSession= sqlSession();
+		Map map = new HashMap();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		map.put("whost", whost);
+		List li = sqlSession.selectList(namespace + ".getWaglelist_adWHOST",map);
+		sqlSession.close();
+		return li;
+	}
+	
+	
+	
 	// 와글 전체 목록 갯수.
 	public int getWagleCount_ad() {
 		int num = 0;
@@ -307,7 +331,26 @@ public class WaglelistDBMybatis extends MybatisConnector{
 		sqlSession.close();
 		return num;
 	}
+	public int getWagleCount_adWNAME(String wname) {
+		int num = 0;
+		sqlSession=sqlSession();
+		Map map = new HashMap();
+		map.put("wname", wname);
+		num = sqlSession.selectOne(namespace+".getWagleCount_adWNAME", map);
+		sqlSession.close();
+		return num;
+	}
+	public int getWagleCount_adWHOST(String whost) {
+		int num = 0;
+		sqlSession=sqlSession();
+		Map map = new HashMap();
+		map.put("whost", whost);
+		num = sqlSession.selectOne(namespace+".getWagleCount_adWHOST", map);
+		sqlSession.close();
+		return num;
+	}
 	// =================================================================
+
 	
 	
 	
