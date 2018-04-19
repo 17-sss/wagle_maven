@@ -16,7 +16,7 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<bean class="wagle.controller.BoardController"/>
 	<bean class="wagle.controller.MessageController"/>
 	<bean class="wagle.controller.AdminController"/>
-	
+	<bean class="wagle.controller.ChatController"/>
 	<bean id="multipartResolver" 
          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
    	</bean> 
