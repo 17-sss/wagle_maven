@@ -16,6 +16,7 @@ li{display:inline;}
 	function clickAll(){
 		
 		var chk = document.ch.check;
+		
 		for(var i = 0;i<chk.length;i++){
 			chk[i].checked = !chk[i].checked;
 		}
@@ -27,12 +28,11 @@ li{display:inline;}
 <body>
 <%@include file="/common/header.jsp"%>
 <%@include file="../message/messageside.jsp"%>
-<div style="margin-left:11%">	
+<div style="margin-left:11%">
 	<form method="post" action="messagedelete?group=${group}" name="ch">
 	<div>
 	<ul>
 	<li><input type="submit"class="w3-button" value="삭제"></li>
-	<li><button class="w3-button">답장</button></li>
 	<c:if test="${group =='1'}">
 	<li><a href="orderby" class="w3-button">안읽은 쪽지</a></li>
 	</c:if>

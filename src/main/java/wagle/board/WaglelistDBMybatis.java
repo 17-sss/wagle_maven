@@ -351,7 +351,24 @@ public class WaglelistDBMybatis extends MybatisConnector{
 	}
 	// =================================================================
 
-	
+
+   public List rscript () {
+      sqlSession= sqlSession();
+      List li = sqlSession.selectList(namespace + ".readRScript");
+      sqlSession.close();
+      return li;
+   }
+	   
+   public String getWname1(int wboardid) {
+       sqlSession = sqlSession();
+      Map map = new HashMap();
+      map.put("wboardid", wboardid);
+      
+      String wname = sqlSession.selectOne(namespace+".getWname1",map);
+      sqlSession.close();
+      return wname;
+    }
+
 	
 	
 	

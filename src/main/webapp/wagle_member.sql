@@ -28,7 +28,7 @@ TRUNCATE TABLE wagle_member;
 
 COMMIT;
 
-SELECT WAGLE_memberSER.nextval from dual
+SELECT WAGLE_memberSER.nextval from dual;
 
 insert into wagle_member(num, email, pwd, name, gender, age, loc, regdate, pwdQ, pwdA)
 values(WAGLE_memberSER.nextval,'admin','1234','admin','????', '????', '????', sysdate, '1', 'admin');

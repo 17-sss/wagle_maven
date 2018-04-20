@@ -115,6 +115,9 @@
                  <option  value="여행">여행</option>
                  <option  value="요리/음식">요리/음식</option>
                  <option  value="인문학/책">인문학/책</option>
+                 <option  value="문화/예술">문화/예술</option>
+                 <option  value="사교/인맥">사교/인맥</option>
+                 <option  value="외국/언어">외국/언어</option>
             </select>       
          </td>
          </tr>

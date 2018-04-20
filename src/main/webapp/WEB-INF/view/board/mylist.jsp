@@ -205,17 +205,17 @@ li{
                            <button class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
                            onclick="document.location.href='${pageContext.request.contextPath}/board/wagleUpdate?wboardid=${mylist.wboardid}'">수정</button>
                      </div>
-                    <div class="cell">
-                   		   <a  href="${pageContext.request.contextPath}/chat/GroupChat?wboardid=${mylist.wboardid}" class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
-                          onclick="window.open(this.href,'','resizable=no, width=900, height=750, left=800, top=200'); return false;">채팅</a>
-                    </div>       
+ <div class="cell">
+        <a  href="${pageContext.request.contextPath}/chat/GroupChat?wboardid=${mylist.wboardid}&wname=${mylist.wname}" class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
+         onclick="window.open(this.href,'','resizable=no, width=900, height=750, left=800, top=200'); return false;">채팅</a>    
+ </div>      
                   </div>
                   </c:forEach>
                   </div>
                </c:if>
                
-               <div style="height:100px;">
-               
+               <div style="margin-top:100px;margin-bottom:100px;">
+               	<hr style="border:0.5px dashed lightgrey;">
                </div>
                
             
@@ -294,7 +294,7 @@ li{
                          <div class="w3-dropdown-content w3-bar-block w3-border" style="width:250px;">
                             <i class="w3-bar-item w3-button" style="color:red;"><b>${mylist.host}</b>
                             &nbsp;&nbsp;
-                            <button onclick="document.location.href='${pageContext.request.contextPath}/message/sendmessageForm?userinfo2=${mylist.whostemail}'" class="w3-btn fa fa-envelope-o w3-round w3-yellow w3-right"></button>
+                            <button onclick="document.location.href='${pageContext.request.contextPath}/message/sendmessageForm?userinfo2=${mylist.hostemail}'" class="w3-btn fa fa-envelope-o w3-round w3-yellow w3-right"></button>
                             </i> 
                             <c:forEach var="mylist3" items="${mylist.member}">
                               <i class="w3-bar-item w3-button">${mylist3.wagler}
@@ -306,10 +306,10 @@ li{
                          </div>
                        </div>
                      </div>
-                     <div class="cell">
-                   		   <a  href="${pageContext.request.contextPath}/chat/GroupChat?wboardid=${mylist.wboardid}" class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
-                          onclick="window.open(this.href,'','resizable=no, width=900, height=750, left=800, top=200'); return false;">채팅</a>
-                     </div>      
+                      <div class="cell">
+        <a  href="${pageContext.request.contextPath}/chat/GroupChat?wboardid=${mylist.wboardid}&wname=${mylist.wname}" class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
+         onclick="window.open(this.href,'','resizable=no, width=900, height=750, left=800, top=200'); return false;">채팅</a>    
+ </div>       
                   </div>
                   </c:forEach>
             </c:if>

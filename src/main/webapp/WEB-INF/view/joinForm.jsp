@@ -115,9 +115,9 @@
       		
 			<label>
 			<input type="hidden" name="num" value="${num}">
-			<input class="w3-button w3-yellow w3-round" type="submit" value="작성완료"><!-- &nbsp;&nbsp; -->
-			<input class="w3-button w3-yellow w3-round" type="reset" value="다시작성">
-			<input class="w3-button w3-yellow w3-round" type="button" value="취소" onclick="window.location.href='${pageContext.request.contextPath}/index'">
+			<input class="w3-button w3-yellow w3-round" type="submit" value="작성완료"/><!-- &nbsp;&nbsp; -->
+			<input class="w3-button w3-yellow w3-round" type="reset" value="다시작성"/>
+			<input class="w3-button w3-yellow w3-round" type="button" value="취소" onclick="window.location.href='${pageContext.request.contextPath}/index'"/>
 			</label></p>
 		</div></form>
   

@@ -40,7 +40,6 @@ public class WebSocketServer {
 		}
 	}
 
-	
 	@OnOpen
 	public void onOpen(Session session) {
 		// Add session to the connected sessions set

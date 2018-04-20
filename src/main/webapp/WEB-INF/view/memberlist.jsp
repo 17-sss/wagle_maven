@@ -33,8 +33,9 @@
 			       <div class="w3-center w3-margin-top w3-margin-bottom">
 			       		<select class="w3-border" style="display: inline-block;" name="opt" >
 							<option class="w3-text-gray" value="" disabled>Search</option>
-				   			<option value="1" selected>Email</option>
-				   			<option value="2">Name</option>
+				   			<option value="1" selected>Email + Name</option>
+	                        <option value="2">Email</option>
+	                        <option value="3">Name</option>
 		      			</select>
 			       		<input type="text" class="w3-border" placeholder="검색..." name="condition">
 			       		<input type="submit" class="orangee w3-small w3-button" value="Search" style="display: inline-block;">
@@ -107,8 +108,9 @@
 	       <div class="w3-center w3-margin-top w3-margin-bottom">
 	       		<select class="w3-border" style="display: inline-block;" name="opt" >
 					<option class="w3-text-gray" value="" disabled>Search</option>
-		   			<option value="1" selected>Email</option>
-		   			<option value="2">Name</option>
+		   			<option value="1" selected>Email + Name</option>
+                        <option value="2">Email</option>
+                        <option value="3">Name</option>
       			</select>
 	       		<input type="text" class="w3-border" placeholder="검색..." name="condition">
 	       		<input type="submit" class="orangee w3-small w3-button" value="Search" style="display: inline-block;">

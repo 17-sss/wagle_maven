@@ -25,77 +25,85 @@ public class AdminController {
 	
 	// 관리자 - 맴버목록
 	@RequestMapping(value = "memberlist")
-	public ModelAndView memberlist(String opt, String condition, HttpServletRequest request, String pageNum) throws Throwable {
-		
-		ModelAndView mv = new ModelAndView();
-		HttpSession session = request.getSession();
-		
-		int pageSize = 10;
-		
-		if (pageNum == null || pageNum == "") {
-			pageNum = "1";
-		}
-		
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage - 1) * pageSize + 1;
-		int endRow = currentPage * pageSize;
-		//System.out.println("+++++++++++\n"+"start: "+ startRow + "\nend: "+endRow + "\n+++++++++++");
-		int count = 0;
-		int number = 0;
-		List memberlist = null;
-		
-		if (opt == null) {
-			count = dbMember.getMemberCount();
-			if (count > 0) {
-				memberlist = dbMember.getMembers(startRow, endRow);
-				System.out.println("NULL NO CONDITION (기본값)");
-			}
-		} else if (opt.equals("1")) {
-			count = dbMember.getMemberCountEmail("%"+condition+"%");
-			if (count > 0) {
-				memberlist = dbMember.getMembersEmail(startRow, endRow, "%"+condition+"%");
-				System.out.println("=====검색=====\nEmail: " + condition + "\n=============");
-			}
-		} else if (opt.equals("2")) {
-			count = dbMember.getMemberCountName("%"+condition+"%");
-			if (count > 0) {
-				memberlist = dbMember.getMembersName(startRow, endRow, "%"+condition+"%");
-				System.out.println("=====검색=====\nName: " + condition + "\n=============");
-			}
-		}
-		number = count - (currentPage - 1) * pageSize;
-			
+	   public ModelAndView memberlist(String opt, String condition, HttpServletRequest request, String pageNum) throws Throwable {
+	      
+	      ModelAndView mv = new ModelAndView();
+	      HttpSession session = request.getSession();
+	      
+	      int pageSize = 10;
+	      
+	      if (pageNum == null || pageNum == "") {
+	         pageNum = "1";
+	      }
+	      
+	      int currentPage = Integer.parseInt(pageNum);
+	      int startRow = (currentPage - 1) * pageSize + 1;
+	      int endRow = currentPage * pageSize;
+	      //System.out.println("+++++++++++\n"+"start: "+ startRow + "\nend: "+endRow + "\n+++++++++++");
+	      int count = 0;
+	      int number = 0;
+	      List memberlist = null;
+	      
+	      if (opt == null) {
+	         count = dbMember.getMemberCount();
+	         if (count > 0) {
+	            memberlist = dbMember.getMembers(startRow, endRow);
+	            System.out.println("NULL NO CONDITION (기본값)");
+	         }
+	      } else if (opt.equals("1")) {
+	         count = dbMember.getMemberCountEN("%"+condition+"%", "%"+condition+"%");
+	         if (count > 0) {
+	            memberlist = dbMember.getMembersEN(startRow, endRow, "%"+condition+"%", "%"+condition+"%");
+	            System.out.println("=====검색=====\nEmail + Name: " + condition + "\n=============");
+	         }
+	      } else if (opt.equals("2")) {
+	         count = dbMember.getMemberCountEmail("%"+condition+"%");
+	         if (count > 0) {
+	            memberlist = dbMember.getMembersEmail(startRow, endRow, "%"+condition+"%");
+	            System.out.println("=====검색=====\nEmail: " + condition + "\n=============");
+	         }
+	      } else if (opt.equals("3")) {
+	         count = dbMember.getMemberCountName("%"+condition+"%");
+	         if (count > 0) {
+	            memberlist = dbMember.getMembersName(startRow, endRow, "%"+condition+"%");
+	            System.out.println("=====검색=====\nName: " + condition + "\n=============");
+	         }
+	      }
+	      number = count - (currentPage - 1) * pageSize;
+	         
 
-		int bottomLine = 3;
-		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-		int startPage = 1 + (currentPage - 1) / bottomLine * bottomLine;
-		int endPage = startPage + bottomLine - 1;
+	      int bottomLine = 3;
+	      int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+	      int startPage = 1 + (currentPage - 1) / bottomLine * bottomLine;
+	      int endPage = startPage + bottomLine - 1;
 
-		if (endPage > pageCount)
-			endPage = pageCount;
-		
-		mv.addObject("count", count);
-		mv.addObject("memberlist", memberlist);
-		mv.addObject("currentPage", currentPage);
-		mv.addObject("startPage", startPage);
-		mv.addObject("bottomLine", bottomLine);
-		mv.addObject("pageCount", pageCount);
-		mv.addObject("number", number);
-		mv.addObject("endPage", endPage);
-		mv.addObject("condition", condition);
-		mv.addObject("opt", opt);
-		
-		// 직접 접근 막음 (url)
-		if (session.getAttribute("sessionEmail").equals("admin")) {
-			// 관리자일 경우
-			mv.setViewName("memberlist");
-		} else if (!session.getAttribute("sessionEmail").equals("admin")) {
-			// 유저일 경우
-			mv.setViewName("index");
-		}
+	      if (endPage > pageCount)
+	         endPage = pageCount;
+	      
+	      mv.addObject("count", count);
+	      mv.addObject("memberlist", memberlist);
+	      mv.addObject("currentPage", currentPage);
+	      mv.addObject("startPage", startPage);
+	      mv.addObject("bottomLine", bottomLine);
+	      mv.addObject("pageCount", pageCount);
+	      mv.addObject("number", number);
+	      mv.addObject("endPage", endPage);
+	      mv.addObject("condition", condition);
+	      mv.addObject("opt", opt);
+	      
+	      // 직접 접근 막음 (url)
+	      if (session.getAttribute("sessionEmail").equals("admin")) {
+	         // 관리자일 경우
+	         mv.setViewName("memberlist");
+	      } else if (!session.getAttribute("sessionEmail").equals("admin")) {
+	         // 유저일 경우
+	         mv.setViewName("index");
+	      }
 
-		return mv;
-	}
+	      return mv;
+	   }
+
+
 	
 	// 관리자 - 그룹관리
 	@RequestMapping(value = "waglelist_ad")

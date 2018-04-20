@@ -55,10 +55,10 @@
 				  <c:if test="${sessionEmail != null}">
 				    
 				    <label class="w3-right w3-small" style="margin:10px 10px 0px 0px;"> <b>${name}</b> 님 환영합니다.</label>
-				    <c:if test="${count != 0 && count != null}"> 
-			         <div class="w3-right w3-small" style="margin:10px 10px 0px 0px;"><a href="${pageContext.request.contextPath}/message/messagelist">쪽지&nbsp;${count}<strong><font color="red">N</font></strong></a></div>
+				    <c:if test="${count1 != 0 && count1 != null}"> 
+			         <div class="w3-right w3-small" style="margin:10px 10px 0px 0px;"><a href="${pageContext.request.contextPath}/message/messagelist">쪽지&nbsp;${count1}<strong><font color="red">N</font></strong></a></div>
 			     	 </c:if>
-			         <c:if test="${count == 0 || count == null}">
+			         <c:if test="${count1 == 0 || count1 == null}">
 			         <div class="w3-right w3-small" style="margin:10px 10px 0px 0px;"><a href="${pageContext.request.contextPath}/message/sendmessageForm">쪽지</a></div>
 			         </c:if>
 				   
@@ -117,10 +117,16 @@
   <section class="background">
     <div class="content-wrapper">
       <p class="content-title">&nbsp;</p>
-      <p class="content-subtitle" style="font-size: 6vh; margin-top: 64px;"><b>원하는 와글이 없다면 ?</b></p>
+      <!-- <p class="content-subtitle" style="font-size: 6vh; margin-top: 64px;"><b>원하는 와글이 없다면 ?</b></p> -->
       <div id="wordcloud" style="height:650px; width:100%; margin-top: 80px;">
      		 <c:forEach var="word" items="${imgslide}">
-				<span data-weight="${word.wreadcount * 3.5}">${word.wname}</span>
+				<c:if test="${word.wreadcount > 50 }">
+                     <span data-weight="${word.wreadcount * 5 / 2}">${word.wname}</span>
+                  </c:if>
+                  <c:if test="${word.wreadcount < 50 }">
+                     <span data-weight="${word.wreadcount * 5}">${word.wname}</span>
+                  </c:if>
+
 				<%-- ${Math.random() * 100} <- 랜덤  ||  ${word.wreadcount * 5} <= 조회수 --%>
 			 </c:forEach>
       </div>
@@ -213,7 +219,6 @@
       _gaq.push([ '_setAccount', 'UA-36251023-1' ]);
       _gaq.push([ '_setDomainName', 'jqueryscript.net' ]);
       _gaq.push([ '_trackPageview' ]);
-
       (function() {
          var ga = document.createElement('script');
          ga.type = 'text/javascript';

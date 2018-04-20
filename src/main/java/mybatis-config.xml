@@ -2,29 +2,30 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	
-	<typeAliases>
-		<typeAlias type="wagle.members.MemberDataBean" alias="Member"/>
-		<typeAlias type="wagle.board.WagleDataBean" alias="Wagle"/>
-		<typeAlias type="wagle.review.BoardDataBean" alias="board"/>
-		<typeAlias type="wagle.message.MessageDataBean" alias="message"/>
-	</typeAliases>
-	<environments default="development">
-		<environment id="development">
-			<transactionManager type="JDBC"/>
-		<dataSource type="POOLED">
-			<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-			<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-			<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/> 보희집,형원집.....-->
-			<property name="username" value="scott"/>
-			<property name="password" value="tiger"/>
-		</dataSource>
-		</environment> 
-	</environments>
-	<mappers>
-		<mapper resource="Member.xml"/>
-		<mapper resource="Wagle.xml"/>
-		<mapper resource="reviewBoard.xml"/>
-		<mapper resource="message.xml"/>
-	</mappers>
+   
+   <typeAliases>
+      <typeAlias type="wagle.members.MemberDataBean" alias="Member"/>
+      <typeAlias type="wagle.board.WagleDataBean" alias="Wagle"/>
+      <typeAlias type="wagle.review.BoardDataBean" alias="board"/>
+      <typeAlias type="wagle.message.MessageDataBean" alias="message"/>
+      <typeAlias type="wagle.board.RScriptDataBean" alias="rscript"/>
+   </typeAliases>
+   <environments default="development">
+      <environment id="development">
+         <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+         <!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/> 보희집,형원집.....-->
+         <property name="username" value="scott"/>
+         <property name="password" value="tiger"/>
+      </dataSource>
+      </environment> 
+   </environments>
+   <mappers>
+      <mapper resource="Member.xml"/>
+      <mapper resource="Wagle.xml"/>
+      <mapper resource="reviewBoard.xml"/>
+      <mapper resource="message.xml"/>
+   </mappers>
 </configuration>

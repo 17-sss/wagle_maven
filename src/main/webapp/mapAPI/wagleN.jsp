@@ -7,11 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>¿Í±Û °­ºÏ¼¾ÅÍ ¸Ê</title>
-    <script src="/wagle/1/mapAPI/docs/js/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="/wagle/1/mapAPI/docs/js/examples-base.js"></script>
-    <script type="text/javascript" src="/wagle/1/mapAPI/docs/js/highlight.min.js"></script>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=rGDUUxt5TW5mX2jV3HBL&submodules=geocoder"></script>
-    <link rel="stylesheet" type="text/css" href="/wagle/1/mapAPI/docs/css/examples-base.css" />
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=rGDUUxt5TW5mX2jV3HBL&submodules=geocoder"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     
     <script>
@@ -22,8 +18,8 @@
 
 <!-- @category Overlay/Infowindow -->
 
-<div id="wrap" class="section">
-    <div id="map" style="width:700px;height:500px; margin-top: 350px;" class="w3-center w3-display-middle"></div>
+<div id="wrap" class="section" style="height: 30vh; max-height:310px;">
+    <div id="map" style="width:44vw; height:29vh; margin-top: 0px;" class="w3-center w3-display-middle"></div>
     <code id="snippet" class="snippet"></code>
 </div>
 <script id="code">
@@ -54,7 +50,7 @@ var contentString = [
 var infowindow = new naver.maps.InfoWindow({
 
     content: contentString,
-    maxWidth: 500,
+    maxWidth: 400,
     backgroundColor: "#ffffff",
     borderColor: "#ffd11a",
     borderWidth: 2,

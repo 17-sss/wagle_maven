@@ -61,7 +61,7 @@
 	
 	<!-- 이미지 슬라이드 -->
 	<select id="imgslide" resultType="Wagle">
-			select * from wagle_list where wagler IS NULL order by wboardid desc
+			select * from wagle_list where wagler IS NULL AND (ROWNUM BETWEEN 1 AND 5) order by wboardid desc
 	</select>
 	
 	<!-- 와글장이 와글을 수정한다. -->
@@ -143,8 +143,18 @@
 		SELECT nvl(count(*),0) FROM wagle_list where whost IS NOT NULL and whost like #{whost}
 	</select>
 	
-	<!-- ============================================ -->
+	<select id="readRScript" resultType="rscript">
+      select w1, nvl(sum(a10),0) a10, nvl(sum(a20),0) a20,nvl(sum(a30),0) a30, nvl(sum(a40),0) a40, nvl(sum(a50),0) a50, nvl(sum(a60),0) a60 from 
+      (select wagle_list.wcategory w1,wagle_member.age a1 ,decode(wagle_member.age, '10대', count(*)) a10
+      ,decode(wagle_member.age, '20대', count(*)) a20, decode(wagle_member.age, '30대', count(*)) a30
+      ,decode(wagle_member.age, '40대', count(*)) a40, decode(wagle_member.age, '50대', count(*)) a50
+      ,decode(wagle_member.age, '60대', count(*)) a60 from wagle_list,wagle_member 
+      where wagle_list.wagleremail=wagle_member.email
+       group by wagle_list.wcategory, wagle_member.age) group by w1
+   </select>
 	
-	
-	
+	<select id="getWname1" parameterType="hashmap" resultType="String">
+	   select wname from wagle_list where wboardid=#{wboardid} and wagler IS NULL
+	</select>
+
 </mapper>

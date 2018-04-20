@@ -228,6 +228,30 @@ public class MemberDBMybatis extends MybatisConnector{
 				sqlSession.close();
 				return li;
 			}
+			
+			public int getMemberCountEN(String email, String name) {
+	            int x = 0;
+	            sqlSession=sqlSession();
+	            Map map = new HashMap();
+	            map.put("email", email);
+	            map.put("name", name);
+	            x = sqlSession.selectOne(namespace+".getMemberCountEN", map);
+	            sqlSession.close();
+	            return x;
+	         }
+
+	public List getMembersEN(int startRow, int endRow, String email, String name) {
+	            sqlSession= sqlSession();
+	            Map map = new HashMap();
+	            map.put("startRow", startRow);
+	            map.put("endRow", endRow);
+	            map.put("email", email);
+	            map.put("name", name);
+	            List li = sqlSession.selectList(namespace + ".getMembersEN",map);
+	            sqlSession.close();
+	            return li;
+	         }
+
 
 			
 }

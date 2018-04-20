@@ -14,17 +14,18 @@
 </script>
 </head>
 <body>
+<%@include file="/common/header.jsp"%>
 <%@include file="../message/messageside.jsp"%>
 <div style="margin-left:11%">
 <form autocomplete="off" method="post" action="sendPro">
-	<input type="hidden" name="userinfo" value="${name}">
+	<input type="hidden" name="userinfo" value="${sessionEmail}">
 	<input class="w3-button" type="submit" value="보내기">
 	
 	<hr>
 	<div>
 
 	<c:if test="${userinfo == 'mysend'}">
-	 받는사람&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="userinfo2" size="40" value="${name}"/>
+	 받는사람&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="userinfo2" size="40" value="${sessionEmail}"/>
 	</c:if>
 	<c:if test="${userinfo !='mysend'}"> 
 	받는사람 <input class="w3-check" type="checkbox" name="check" onclick="mysend()">내게쓰기

@@ -224,7 +224,7 @@
 								<input class="w3-btn w3-amber w3-round-xlarge" type="button" value="취소" onclick="window.location.href='${pageContext.request.contextPath}/index'">
 								</c:if>
 								<c:if test="${sessionEmail eq 'admin'}">
-								<input class="w3-btn w3-amber w3-round" type="button" value="목록" onclick="window.location.href='${pageContext.request.contextPath}/admin/memberlist'">
+								<input class="w3-btn w3-amber w3-round-xlarge" type="button" value="목록" onclick="window.location.href='${pageContext.request.contextPath}/admin/memberlist'">
 								</c:if>
 							</div>
 

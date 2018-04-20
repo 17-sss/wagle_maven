@@ -21,14 +21,13 @@ public class MessageController {
 	MessageMyBatis dbPro = MessageMyBatis.getInstance();
 		
 	@RequestMapping("/sendmessageForm")
-	public String sendmessageForm(HttpServletRequest request,Model model,String userinfo2) {
+	public String sendmessageForm(HttpServletRequest request,Model model) {
 		
 		String userinfo = request.getParameter("userinfo");
+		String userinfo2 = request.getParameter("userinfo2");
 		
-		if (userinfo2!=null) {
-		model.addAttribute("userinfo2",userinfo2);
-		}
 		model.addAttribute("userinfo",userinfo);
+		model.addAttribute("userinfo2",userinfo2);
 		
 		return "/message/sendmessageForm";
 	}
@@ -39,11 +38,10 @@ public class MessageController {
 	
 		HttpSession session = request.getSession();
 		
-		String name =(String)session.getAttribute("name");
+		String sessionEmail =(String)session.getAttribute("sessionEmail");
 		
-		int count = dbPro.count(name);
-		
-		session.setAttribute("count", count);
+		int count1 = dbPro.count(sessionEmail);
+		session.setAttribute("count1", count1);
 		
 	
 		return "redirect:/message/messagelist2"; 
@@ -65,10 +63,12 @@ public class MessageController {
 		List messagelist = null;
 
 		HttpSession session = request.getSession();
-		String name =  (String)session.getAttribute("name");
-		
-		messagelist = dbPro.listArticle(name, startRow, endRow, "re");
+		String sessionEmail =  (String)session.getAttribute("sessionEmail");
 
+		messagelist = dbPro.listArticle(sessionEmail, startRow, endRow, "re");
+		
+		int count1 = dbPro.count(sessionEmail);
+		session.setAttribute("count1", count1);
 		model.addAttribute("messagelist", messagelist);
 		model.addAttribute("group",group);
 		return "/message/messagelist";
@@ -77,7 +77,6 @@ public class MessageController {
 	public String messagelist2(MessageDataBean article,Model model,HttpServletRequest request) throws Throwable {
 		String group ="2";
 		int pageSize = 10;
-		System.out.println("messagelist2");
 		String pageNum = "1";
 		if (pageNum == null || pageNum == "") {
 			pageNum = "1";
@@ -90,10 +89,11 @@ public class MessageController {
 		List messagelist = null;
 
 		HttpSession session = request.getSession();
-		String name =  (String)session.getAttribute("name");
+		String sessionEmail =  (String)session.getAttribute("sessionEmail");
 		
-		messagelist = dbPro.listArticle(name, startRow, endRow, "se");
-
+		messagelist = dbPro.listArticle(sessionEmail, startRow, endRow, "se");
+		int count1 = dbPro.count(sessionEmail);
+		session.setAttribute("count1", count1);
 		model.addAttribute("messagelist", messagelist);
 		model.addAttribute("group",group);
 		return "/message/messagelist";
@@ -115,21 +115,35 @@ public class MessageController {
 	List messagelist = null;
 
 	HttpSession session = request.getSession();
-	String name =  (String)session.getAttribute("name");
+	String sessionEmail =  (String)session.getAttribute("sessionEmail");
 	
-	messagelist = dbPro.listArticle(name, startRow, endRow, "my");
-     
+	messagelist = dbPro.listArticle(sessionEmail, startRow, endRow, "my");
+	int count1 = dbPro.count(sessionEmail);
+	session.setAttribute("count1", count1); 
 	model.addAttribute("messagelist", messagelist);
 	model.addAttribute("group",group);
 	
 	return "/message/messagelist";
 	}
 	@RequestMapping("messagedelete")
-	public String messagedelete(HttpServletRequest request,HttpServletRequest req)  throws Throwable {
+	public String messagedelete(HttpServletRequest request,HttpServletRequest req,Model model)  throws Throwable {
 			HttpSession session = request.getSession();
-		
-			String name =(String)session.getAttribute("name");
-	
+			int pageSize = 10;
+
+			String pageNum = "1";
+			if (pageNum == null || pageNum == "") {
+				pageNum = "1";
+			}
+			int currentPage = Integer.parseInt(pageNum);
+			int startRow = (currentPage - 1) * pageSize + 1;
+			int endRow = currentPage * pageSize;
+			int number = 0;
+			List messagelist = null;
+			
+			//messagelist = request.getParameter("messagelist");
+			String sessionEmail =(String)session.getAttribute("sessionEmail");
+			
+			String group = request.getParameter("group");
 			
 			String num[]=req.getParameterValues("check");
 			int numint[] = new int[10];
@@ -144,18 +158,28 @@ public class MessageController {
 				dbPro.deleteArticle(numint[i]);
 			
 			}
-			int count = dbPro.count(name);
+			int count1 = dbPro.count(sessionEmail);
 			
-			session.setAttribute("count", count);	
-				
-			 return  "/message/messagelist"; 
+			session.setAttribute("count1", count1);	
+			model.addAttribute("group", group);	
+			System.out.println(group+"====");
+			if(group.equals("3")) {
+				return  "redirect:messagelist3"; 
+			}
+			if(group.equals("2")) {
+				return  "redirect:messagelist2"; 
+			}
+			if(group.equals("1")) {
+				return  "redirect:messagelist"; 
+			}	
+			return "";
 			}
 	@RequestMapping("cmessagedelete")
 	public String cmessagedelete(HttpServletRequest request,MessageDataBean article)  throws Throwable {
 			HttpSession session = request.getSession();
 		
-			String name =(String)session.getAttribute("name");
-		
+			String sessionEmail =(String)session.getAttribute("sessionEmail");
+			String group = request.getParameter("group");
 			
 		
 			int num = article.getNum();
@@ -163,11 +187,21 @@ public class MessageController {
 			
 			dbPro.deleteArticle(num);
 			
-			int count = dbPro.count(name);
+			int count1 = dbPro.count(sessionEmail);
 			
-			session.setAttribute("count", count);
+			session.setAttribute("count1", count1);
+			
+			if(group.equals("3")) {
+				return  "redirect:messagelist3"; 
+			}
+			if(group.equals("2")) {
+				return  "redirect:messagelist2"; 
+			}
+			if(group.equals("1")) {
+				return  "redirect:messagelist"; 
+			}	
+			return "";
 				
-			 return  "/message/messagelist"; 
 			}
 	@RequestMapping("messagecontent")
 	public String messagecontent(HttpServletRequest request,MessageDataBean article,MemberDataBean user,Model model)  throws Throwable { 
@@ -176,14 +210,14 @@ public class MessageController {
 			
 			HttpSession session = request.getSession();
 			
-			String name =(String)session.getAttribute("name");
+			String sessionEmail =(String)session.getAttribute("sessionEmail");
 			
 			int num = article.getNum();
 			article = dbPro.updateConfirm(num);
 			
-			int count = dbPro.count(name);
+			int count1 = dbPro.count(sessionEmail);
 			
-			session.setAttribute("count", count);
+			session.setAttribute("count1", count1);
 			
 			
 			model.addAttribute("article", article);
@@ -207,9 +241,9 @@ public class MessageController {
 		List messagelist = null;
 
 		HttpSession session = request.getSession();
-		String name =  (String)session.getAttribute("name");
+		String sessionEmail =  (String)session.getAttribute("sessionEmail");
 		
-		messagelist = dbPro.orderby(name, startRow, endRow,"re");
+		messagelist = dbPro.orderby(sessionEmail, startRow, endRow,"re");
 			
 		model.addAttribute("messagelist", messagelist);
 		
@@ -232,9 +266,9 @@ public class MessageController {
 		List messagelist = null;
 
 		HttpSession session = request.getSession();
-		String name =  (String)session.getAttribute("name");
+		String sessionEmail =  (String)session.getAttribute("sessionEmail");
 		
-		messagelist = dbPro.orderby(name, startRow, endRow,"se");
+		messagelist = dbPro.orderby(sessionEmail, startRow, endRow,"se");
 		
 		model.addAttribute("messagelist", messagelist);
 		
@@ -258,9 +292,9 @@ public class MessageController {
 		List messagelist = null;
 
 		HttpSession session = request.getSession();
-		String name =  (String)session.getAttribute("name");
-		System.out.println(name);
-		messagelist = dbPro.orderby(name, startRow, endRow,"my");
+		String sessionEmail =  (String)session.getAttribute("sessionEmail");
+		System.out.println(sessionEmail);
+		messagelist = dbPro.orderby(sessionEmail, startRow, endRow,"my");
 		
 		model.addAttribute("messagelist", messagelist);
 		model.addAttribute("group", group);	

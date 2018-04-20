@@ -31,6 +31,7 @@ DROP SEQUENCE wagle_wagleser;
 
 TRUNCATE TABLE wagle_list;
 DROP TABLE wagle_list;
-SELECT * FROM wagle_list;
+select * from wagle_list where (wagler IS NULL) AND (ROWNUM BETWEEN 0 AND 5) order by wboardid desc;
+select * from wagle_list order by wboardid desc;
 
 COMMIT;

@@ -64,31 +64,39 @@ public class MemberController {
 	
 	//로그인
 	@RequestMapping("/login")
-	      public String login(HttpServletRequest request)
-	    		  throws Throwable { 
-	  		
+    public String login(HttpServletRequest request)
+  		  throws Throwable { 
 		
-	  		String sessionEmail = request.getParameter("email");
-	  		String pwd = request.getParameter("pwd");
-	  		String sessionPwd = request.getParameter("pwd");
-	  		
-	  		int pwcheck = dbMember.login(sessionEmail, pwd);	
-	  		
-	  		request.setAttribute("pwcheck", pwcheck);
-	  		
-	  		if (pwcheck==-1) {
-	  			return "loginPro";
-	  		}else if (pwcheck==0) {
-	  			return "loginPro";
-	  		}else{
-	  			HttpSession session = request.getSession();
-	  			session.setAttribute("sessionEmail", sessionEmail);	
-	  			session.setAttribute("sessionPwd", sessionPwd);	
-	  			MemberDataBean user = dbMember.getUser2(sessionEmail, pwcheck);
-	  			session.setAttribute("name", user.getName());//name받아오기
-	  			return "redirect:/index";
-	  	   }		
-	}  
+		MessageMyBatis dbPro = MessageMyBatis.getInstance();
+		
+		String sessionEmail = request.getParameter("email");
+		String pwd = request.getParameter("pwd");
+		String sessionPwd = request.getParameter("pwd");
+		
+		int pwcheck = dbMember.login(sessionEmail, pwd);	
+		
+		HttpSession session = request.getSession();
+		
+		request.setAttribute("pwcheck", pwcheck);
+		
+		
+		if (pwcheck==-1) {
+			return "loginPro";
+		}else if (pwcheck==0) {
+			return "loginPro";
+		}else{
+			session = request.getSession();
+			session.setAttribute("sessionEmail", sessionEmail);	
+			session.setAttribute("sessionPwd", sessionPwd);	
+			MemberDataBean user = dbMember.getUser2(sessionEmail, pwcheck);
+			System.out.println("zzzz여기까지는됨");
+			int count1 = dbPro.count(sessionEmail);
+			session.setAttribute("name", user.getName());//name받아오기
+			session.setAttribute("count1", count1);
+			return "redirect:/index";
+	   }		
+}  
+
 	   
 	
 	//로그아웃

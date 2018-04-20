@@ -1,10 +1,14 @@
 package wagle.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
+import java.net.URLEncoder;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -22,36 +26,35 @@ import wagle.members.MemberDBMybatis;
 @RequestMapping("/chat")
 public class ChatController {
 	
-	WaglelistDBMybatis dbWagle = wagle.board.WaglelistDBMybatis.getInstance();
 	MemberDBMybatis dbMember = MemberDBMybatis.getInstance();
+	WaglelistDBMybatis dbWagle = WaglelistDBMybatis.getInstance();
 	
 	@RequestMapping("/GroupChat")
-	public String GroupChat(String name, String group, Model model,int wboardid,HttpServletRequest req) {
+	public String GroupChat(String name, String group, int wboardid,Model model, HttpServletRequest req) {
 		
+		  group = dbWagle.getWname1(wboardid);
+	      HttpSession session = req.getSession();
+	      session.setAttribute("group", group);
+	      group = (String) session.getAttribute("group");
+	      name =  (String) session.getAttribute("name");
+
 		
-		HttpSession session = req.getSession();
-		name =  (String) session.getAttribute("name");
-		
-		if (group == null) group = "그룹";
+		if (group == null) group = "그룹없어";
 		if (name == null) name = "이름없음";
-	
 		
 		System.out.println("세션이름: " + name + "\n세션그룹명: " + group);
 		
-		List member=dbWagle.getWagleMember(wboardid);
-		String host=dbWagle.getHost(wboardid);
-
-		
 		model.addAttribute("name", name);
 		model.addAttribute("group", group);
-		model.addAttribute("member",member);
-		model.addAttribute("host",host);
 		
 		return "websocketGroup";
 	}
 	@RequestMapping("/upload")
 	public String upload(MultipartHttpServletRequest request) throws IOException{
-			MultipartFile multi = request.getFile("file");
+		System.out.println("upload======================");
+		MultipartFile multi = request.getFile("upload_file");
+		
+		if (multi!=null) {
 			String filename = multi.getOriginalFilename();
 			String uploadPath = request.getRealPath("/") + "img";
 			System.out.println(uploadPath);
@@ -62,6 +65,7 @@ public class ChatController {
 			} else {
 			
 			}
-		return "redirect:GroupChat";
+		}
+		return "form";
 	}
 }
