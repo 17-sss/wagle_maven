@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -38,11 +39,16 @@ public class ChatController {
 	      group = (String) session.getAttribute("group");
 	      name =  (String) session.getAttribute("name");
 
+	    String host=dbWagle.getHost(wboardid);
+		List member=dbWagle.getWagleMember(wboardid);
 		
 		if (group == null) group = "그룹없어";
 		if (name == null) name = "이름없음";
 		
 		System.out.println("세션이름: " + name + "\n세션그룹명: " + group);
+		
+		model.addAttribute("host",host);
+		model.addAttribute("member",member);
 		
 		model.addAttribute("name", name);
 		model.addAttribute("group", group);

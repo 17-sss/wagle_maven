@@ -47,32 +47,51 @@
    });
 </script>
 <style>
+   section.R{
+       /* font-family: 'Yeon Sung', cursive; */
+       
+   }
    section.openIntro{
-      height: 80vh;
-      margin-bottom:20vh;
+      height: 40vh;
+      margin-bottom:8vh;
       font-family: 'Yeon Sung', cursive;
+   }
+   section.bottom{
+        height: 20vh;
+        margin-bottom:20vh;
+        font-family: 'Yeon Sung', cursive;
    }
 </style>
 </head>
 <body>
    <section class="openIntro">
-    <div class="w3-display-middle">
-   <a style="font-size:5rem;"> 
+    <div class="w3-display-topmiddle w3-container" style="top:150px;">
+   <a style="font-size:3.4rem;"> 
     와글 지기가 되려면 ?</a><br>
-    <a style="font-size:3rem;">
+    <a style="font-size:2.5rem;">
     1. 약속을 잘 지켜야 해요  - <br>
     2. 부적절한 컨텐츠는 안돼요 - <br>
     3. 두 가지만 지켜주시면 할 수 있어요 :)
     </a>
-    
-    <p style="font-size:3rem; text-align:center;">와글 지기가 될 준비가 되셨나요 ?</p><br>
-    <a class="fa fa-angle-double-down w3-display-bottommiddle" style="font-size:48px;color:#eb4a2c;"></a>
     </div>
+    </section>
+    
+    <section class="R" style="height:40vh;">
+    <hr style="border-top:1px dotted #FCB043; width: 60%; margin-left:300px;">
+    <p style="font-size:1.5rem; text-align:center;">연령별 카테고리별 인기있는 와글 가입현황</p><br>
+     <%@include file="RScript.jsp" %>
+   </section>
+    
+    <section class="bottom">
+       <div class="w3-display-bottommiddle" style="top:950px;">
+       <p style="font-size:2.8rem; text-align:center;">와글 지기가 될 준비가 되셨나요 ?</p><br>
+       <a class="fa fa-angle-double-down w3-display-bottommiddle" style="font-size:48px;color:#eb4a2c;top:100px;"></a>
+      </div>
    </section>
 
    
    <c:if test="${sessionEmail==null}">
-      <section style="height: 30vh;background-color:#FCB043;">
+      <section style="height: 40vh;background-color:#FCB043;">
          <center>
          <button class="w3-btn w3-yellow w3-round w3-hover w3-hover-white" onclick="document.location.href='${pageContext.request.contextPath}/member/joinForm'"
                style="margin-top:10vh;">Login</button>

@@ -156,5 +156,9 @@
 	<select id="getWname1" parameterType="hashmap" resultType="String">
 	   select wname from wagle_list where wboardid=#{wboardid} and wagler IS NULL
 	</select>
+	
+	<select id="wordcloud" resultType="Wagle">
+			select * from wagle_list where wagler IS NULL order by wboardid desc
+	</select>
 
 </mapper>

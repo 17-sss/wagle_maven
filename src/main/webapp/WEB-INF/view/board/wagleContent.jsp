@@ -103,7 +103,7 @@
       </div>
       <div class="w3-container">
          <p><b>와글 지기 :</b>${wagle.whost}
-         <button onclick="document.location.href='${wagle.whostemail}'" class="w3-btn w3-padding-small w3-round-xlarge w3-amber w3-right">쪽지 보내기</button>
+         <button onclick="document.location.href='${pageContext.request.contextPath}/message/sendmessageForm?userinfo2=${wagle.whostemail}'" class="w3-btn w3-padding-small w3-round-xlarge w3-amber w3-right">쪽지 보내기</button>
          </p>
          <p>${wagle.wprofile}</p>
          <br>

@@ -157,31 +157,28 @@ li{
    
                   <c:forEach var="mylist" items="${mylist}">
                   
-                  <c:if test="${today > mylist.wend}">
-                  <div class="row" style="color:red;">
-                  </c:if>
-                  
-                  <c:if test="${today <= mylist.wend}">
+                 
+                 
                   <div class="row">
-                  </c:if>
-                     <div class="cell">
+             
+                     <div class="cell" <c:if test="${today > mylist.wend}"> style="color:red;"</c:if>>
                         ${count}
                      </div>
                      <c:set var="count" value="${count-1}"/>
                      
-                     <div class="cell" >
+                     <div class="cell" <c:if test="${today > mylist.wend}"> style="color:red;"</c:if>>
                         ${mylist.wcategory}
                      </div>
-                     <div class="cell">
-                        <a style="cursor:pointer;" onclick="document.location.href='${pageContext.request.contextPath}/board/wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')">
+                     <div class="cell" <c:if test="${today > mylist.wend}"> style="color:red;"</c:if>>
+                        <a <c:if test="${today <= mylist.wend}"> style="cursor:pointer;" onclick="document.location.href='${pageContext.request.contextPath}/board/wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')" </c:if>>
                         ${mylist.wname}</a>
                      </div>
-                     <div class="cell">
+                     <div class="cell" <c:if test="${today > mylist.wend}"> style="color:red;"</c:if>>
                         ${mylist.whost}
                      </div>
 
                   
-                     <div class="cell">                  
+                     <div class="cell" <c:if test="${today > mylist.wend}"> style="color:red;"</c:if>>                  
                          <div class="w3-dropdown-hover">
                             <button class="w3-btn w3-padding-small w3-white">
                             <i class="fa fa-user" style="font-size:20px"></i>
@@ -201,7 +198,7 @@ li{
                           </div>
                      </div>
                      
-                     <div class="cell">
+                     <div class="cell" <c:if test="${today > mylist.wend}"> style="color:red;"</c:if>>
                            <button class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
                            onclick="document.location.href='${pageContext.request.contextPath}/board/wagleUpdate?wboardid=${mylist.wboardid}'">¼öÁ¤</button>
                      </div>

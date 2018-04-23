@@ -35,10 +35,8 @@
                
                 <a href="${pageContext.request.contextPath}/board/mylist" class="w3-bar-item">와글관리</a>
                 <a href="${pageContext.request.contextPath}/member/updateForm?email=${sessionEmail}" class="w3-bar-item">회원정보</a>
-                  
-                  <c:if test="${sessionEmail ne 'admin'}">
-                  <a href="${pageContext.request.contextPath}/member/logout" class="w3-bar-item">Logout</a>
-                  </c:if>
+                <a href="${pageContext.request.contextPath}/member/logout" class="w3-bar-item">Logout</a>
+             
          </c:if>
        </div>
      </div>

@@ -20,7 +20,8 @@ CREATE TABLE wagle_list (
   weventdate2 VARCHAR2(100),
   wreadcount int default 0,
   filename VARCHAR2(100),
-  filesize INT );
+  filesize INT
+);
 
 CREATE SEQUENCE wagle_wagleser
   START WITH 1

@@ -119,13 +119,16 @@
       <p class="content-title">&nbsp;</p>
       <!-- <p class="content-subtitle" style="font-size: 6vh; margin-top: 64px;"><b>원하는 와글이 없다면 ?</b></p> -->
       <div id="wordcloud" style="height:650px; width:100%; margin-top: 80px;">
-     		 <c:forEach var="word" items="${imgslide}">
-				<c:if test="${word.wreadcount > 50 }">
-                     <span data-weight="${word.wreadcount * 5 / 2}">${word.wname}</span>
-                  </c:if>
-                  <c:if test="${word.wreadcount < 50 }">
-                     <span data-weight="${word.wreadcount * 5}">${word.wname}</span>
-                  </c:if>
+     		 <c:forEach var="word" items="${wordcloud}">
+				<c:if test="${today <= word.wend}">
+					<c:if test="${word.wreadcount > 50 }">
+	                    <span data-weight="${word.wreadcount * 5 / 2}">${word.wname}</span>
+	                </c:if>
+	                <c:if test="${word.wreadcount < 50 }">
+	                    <span data-weight="${word.wreadcount * 5}">${word.wname}</span>
+	                </c:if>
+                </c:if>
+                  <%-- <span data-weight="${word.wreadcount * 5}">${word.wname}</span> --%>
 
 				<%-- ${Math.random() * 100} <- 랜덤  ||  ${word.wreadcount * 5} <= 조회수 --%>
 			 </c:forEach>

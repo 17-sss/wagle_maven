@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 
-<div class="w3-container w3-border">
-   <img src='<%=request.getContextPath()%>/img/${imgname}' width="400">
+<div class="w3-display-middle w3-container">
+   <img src='${pageContext.request.contextPath}/img/${imgname}' width="600"  style="margin-top: 580px;">
 </div>
 
 </body>

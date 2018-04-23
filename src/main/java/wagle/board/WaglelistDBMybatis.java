@@ -368,6 +368,14 @@ public class WaglelistDBMybatis extends MybatisConnector{
       sqlSession.close();
       return wname;
     }
+   
+   // 워드클라우드
+   public List wordcloud() {
+		sqlSession = sqlSession();
+		List li = sqlSession.selectList(namespace+".wordcloud");
+		sqlSession.close();
+		return li;
+   }
 
 	
 	

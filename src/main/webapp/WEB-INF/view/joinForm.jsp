@@ -43,7 +43,7 @@
 	
 
 	<p>
-	<a href="${pageContext.request.contextPath}/member/findPwd">Forgat Password?</a>
+	<a href="${pageContext.request.contextPath}/member/findPwd">Forgot Password?</a>
 	</p>
 	
 	
@@ -159,7 +159,7 @@ function openCity(evt, cityName) {
 	}
 	
 	if(document.joinForm.idDuplication.value!= "idCheck"){
-		alert("아이디 중복체크를 해주세요.");
+		alert("이메일 중복체크를 해주세요.");
 		return false;
 	}
 

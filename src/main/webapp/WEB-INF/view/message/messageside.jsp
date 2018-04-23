@@ -10,14 +10,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="w3-sidebar w3-bar-block w3-border" style="width:11%">
-	<div class="w3-center">
-	<a href="sendmessageForm" class="w3-button w3-yellow">쪽지쓰기</a>
-  	<a href="sendmessageForm?userinfo=mysend" class="w3-button w3-yellow">내게쓰기</a>
+<div class="w3-sidebar w3-bar-block w3-border" style="width:11%; margin-top:50px;">
+	<div class="w3-center" style="margin-bottom:30px; margin-top:20px;">
+	<button onclick="document.location.href='${pageContext.request.contextPath}/message/sendmessageForm'" class="w3-btn w3-round-large w3-hover w3-hover-white " style="background-color:#FCB043;">쪽지쓰기</button>
+  	<button onclick="document.location.href='${pageContext.request.contextPath}/message/sendmessageForm?userinfo=mysend'" class="w3-btn w3-round-large w3-hover w3-hover-white" style="background-color:#FCB043;">내게쓰기</button>
   	</div>	
-  <a href="messagelist" class="w3-bar-item w3-button">받은쪽지함</a>
-  <a href="messagelist2" class="w3-bar-item w3-button">내게쓴쪽지함</a>
-  <a href="messagelist3" class="w3-bar-item w3-button">보낸쪽지함</a>
+  <button onclick="document.location.href='${pageContext.request.contextPath}/message/messagelist'" class="w3-bar-item w3-button" style="border-top:1px solid lightgrey; border-bottom:1px solid lightgrey;">받은 쪽지함</button>
+  <button onclick="document.location.href='${pageContext.request.contextPath}/message/messagelist2'" class="w3-bar-item w3-button" style="border-bottom:1px solid lightgrey;">내게 쓴 쪽지함</button>
+  <button onclick="document.location.href='${pageContext.request.contextPath}/message/messagelist3'" class="w3-bar-item w3-button" style="border-bottom:1px solid lightgrey;">보낸쪽지함</button>
 </div>
 </body>
 </html>

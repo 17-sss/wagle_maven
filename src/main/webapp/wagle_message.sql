@@ -7,5 +7,9 @@ create table message (
         regdate DATE NOT NULL,
         userinfo2 varchar(30) not null
 );
+
 SELECT * FROM message;
 SELECT * FROM remessage;
+
+TRUNCATE TABLE message;
+

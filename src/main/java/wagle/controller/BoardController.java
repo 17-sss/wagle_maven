@@ -56,11 +56,17 @@ public class BoardController{
    //메인 페이지
    @RequestMapping("/index")
    public String index(Model model) {
+	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      Date mTime = new Date ();
+      String today = sdf.format(mTime);
       
       int number=5;
       List imgslide=dbWagle.imgslide();
+      List wordcloud=dbWagle.wordcloud();
       model.addAttribute("imgslide",imgslide);
+      model.addAttribute("wordcloud",wordcloud);
       model.addAttribute("number",number);
+      model.addAttribute("today",today);
       
       System.out.println(imgslide);
       
@@ -109,7 +115,7 @@ public class BoardController{
 
    // 와글와글
    @RequestMapping("/waglelist")
-   public String waglelist(HttpServletRequest req, Model model,String wcategory) throws Throwable {
+   public String waglelist(HttpServletRequest req, Model model,String wcategory, String search) throws Throwable {
 
       
       List waglelist = null;
@@ -127,6 +133,13 @@ public class BoardController{
       String today = sdf.format(mTime);
       System.out.println(wcategory);
       
+      // wname 기준으로만 검색가능 =================================================
+      if (search != null) {
+    	  waglelist = dbWagle.getWaglelist("%" + search + "%");
+    	  System.out.println("============\n검색: "+search+"\n============");
+      } 
+      // ====================================================================
+      
       
       if (wcategory==null || wcategory.equals("전체")) {
          
@@ -141,22 +154,26 @@ public class BoardController{
       
       model.addAttribute("today",today);
       model.addAttribute("wcategory",wcategory);
+      model.addAttribute("search", search);
       
       return "/board/waglelist";
    }
    
    // 오픈와글
    @RequestMapping("/wagleOpen")
-   public ModelAndView wagleOpen(HttpServletRequest req, WagleDataBean wagle) throws Throwable {
-      HttpSession  session = req.getSession();
+   public ModelAndView wagleOpen(HttpServletRequest request, WagleDataBean wagle) throws Throwable {
+      
+     HttpSession  session = request.getSession();
       String whost=(String)session.getAttribute("name");
       String whostemail = (String)session.getAttribute("sessionEmail");
+      RScript(request);
       
       ModelAndView mv = new ModelAndView();
       
       mv.addObject("whost", whost);
       mv.addObject("whostemail",whostemail);
       mv.setViewName("/board/wagleOpen");
+     
       
       return mv;
    }
@@ -273,7 +290,7 @@ public class BoardController{
    public String wagleContent(HttpServletRequest req,int wboardid,Model mv)  throws Throwable {
       
    
-      WagleDataBean wagle = dbWagle.getWagle(wboardid);
+      WagleDataBean wagle = dbWagle.getWagle(wboardid, "wagleContent");
       
       HttpSession session=req.getSession();
       String wagleremail=(String)session.getAttribute("sessionEmail");
@@ -417,9 +434,7 @@ public class BoardController{
    
    
    //Rscript
-   @RequestMapping("/RScript")
-   public String RScript(HttpServletRequest request,
-          HttpServletResponse response)  throws Throwable { 
+   public String RScript(HttpServletRequest request)  throws Throwable { 
       
       String path="";
       String imgname="";
@@ -432,7 +447,7 @@ public class BoardController{
       if(request.getParameter("imgname")!=null)
          imgname=request.getParameter("imgname");
       else
-         imgname="noname.jpg";
+         imgname="noname01.jpg";
       makecsv();
       path=path.replace("\\", "/");
       System.out.println(path);
@@ -450,7 +465,7 @@ public class BoardController{
       PrintStream ps=null;
       FileOutputStream fos=null;
       List<RScriptDataBean> li = dbWagle.rscript();
-      
+      System.out.println("a:  "+li);
       try {
          fos=new FileOutputStream("c:\\r_temp\\r_test1.csv");
          ps=new PrintStream(fos);

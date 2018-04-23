@@ -60,9 +60,16 @@
 	          <input class="w3-btn w3-small" type="button" style="background-color:#FCB043;" value="여행" onclick="document.location.href='${pageContext.request.contextPath}/board/waglelist?wcategory='+encodeURI('여행')">
 	          <input class="w3-btn w3-small" type="button" style="background-color:#FCB043;" value="요리/음식" onclick="document.location.href='${pageContext.request.contextPath}/board/waglelist?wcategory='+encodeURI('요리/음식')">
 	          <input class="w3-btn w3-small" type="button" style="background-color:#FCB043;" value="인문학/책" onclick="document.location.href='${pageContext.request.contextPath}/board/waglelist?wcategory='+encodeURI('인문학/책')">
+	          <input class="w3-btn w3-small" type="button" style="background-color:#FCB043;" value="문화/예술" onclick="document.location.href='${pageContext.request.contextPath}/board/waglelist?wcategory='+encodeURI('문화/예술')">
+              <input class="w3-btn w3-small" type="button" style="background-color:#FCB043;" value="사교/인맥" onclick="document.location.href='${pageContext.request.contextPath}/board/waglelist?wcategory='+encodeURI('사교/인맥')">
+              <input class="w3-btn w3-small" type="button" style="background-color:#FCB043;" value="외국/언어" onclick="document.location.href='${pageContext.request.contextPath}/board/waglelist?wcategory='+encodeURI('외국/언어')">
 		      <br><br>
-		      <input class="w3-input w3-small search1"  name="search" type="text" placeholder="Search" style="display: inline-block;">
-		      <input class="w3-button w3-small" style="background-color:#FCB043;" value="Search" type="button" onclick="#">
+		      <c:if test="${wcategory eq '전체' || wcategory == null}">
+		      <form class="w3-white" method="post" name="waglelist">
+		     	 <input class="w3-input w3-small search1"  name="search" type="text" placeholder="Search" style="display: inline-block;">
+		         <input class="w3-button w3-small" type="submit" style="background-color:#FCB043; display: inline-block;" value="Search">
+		      </form>
+		      </c:if>
 		    </div>
 		</div>
 	</div>

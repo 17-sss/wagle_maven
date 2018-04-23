@@ -13,39 +13,40 @@ li{display:inline;}
 <body>
 <%@include file="/common/header.jsp"%>
 <%@include file="../message/messageside.jsp"%>
-<div style="margin-left:11%">
+<div style="margin-left:11%; margin-top:80px;">
 	<form method="post" action="cmessagedelete?num=${article.num}&group=${group}">
 	<div>
 	<ul>
-	<li><input type="submit"class="w3-button" value="삭제"></li>
-	<li><button class="w3-button">보관</button></li>
-	<li><button class="w3-button" >답장</button></li>
+	<li><input type="submit"class="w3-padding-small w3-btn w3-round-xlarge w3-hover w3-hover-red w3-white w3-border w3-border-red" value="삭제"></li>
+	<li><a href="sendmessageForm?userinfo2=${article.userinfo}" class="w3-padding-small w3-btn w3-round-xlarge w3-hover w3-hover-yellow w3-white w3-border w3-border-yellow" >답장</a></li>
 	<c:if test="${group=='1'}">
-	<li><a href="messagelist" class="w3-button">목록</a></li>
+	<li><a href="messagelist" class="w3-padding-small w3-btn w3-round-xlarge w3-hover w3-hover-yellow w3-white w3-border w3-border-yellow">목록</a></li>
 	</c:if>
 	<c:if test="${group=='2'}">
-	<li><a href="messagelist2" class="w3-button">목록</a></li>
+	<li><a href="messagelist2" class="w3-padding-small w3-btn w3-round-xlarge w3-hover w3-hover-yellow w3-white w3-border w3-border-yellow">목록</a></li>
 	</c:if>
 	<c:if test="${group=='3'}">
-	<li><a href="messagelist3" class="w3-button">목록</a></li>
+	<li><a href="messagelist3" class="w3-padding-small w3-btn w3-round-xlarge w3-hover w3-hover-yellow w3-white w3-border w3-border-yellow">목록</a></li>
 	</c:if>
-	<li><button class="w3-button">◀이전</button></li>
-	<li><button class="w3-button">다음▶</button></li>
+<!-- 	<li><button class="w3-button">◀이전</button></li>
+	<li><button class="w3-button">다음▶</button></li> -->
 	</ul>
 	</div>
 	</form>
 	<hr>
 <div>
-	&nbsp;&nbsp;&nbsp;보낸사람 ${article.userinfo} <br> 
-	&nbsp;&nbsp;&nbsp;받는시간 ${article.regdate}
+	&nbsp;&nbsp;&nbsp;<b>보낸 사람</b> ${article.userinfo} <br> 
+	&nbsp;&nbsp;&nbsp;<b>받는 시간</b> ${article.regdate}
 </div>
 	<hr>
+	<div style="margin-left:20px;">
 	<c:if test="${group !='3'}">
 	${article.receivemessage}
 	</c:if>
 	<c:if test="${group =='3'}">
 	${article.sendmessage}
 	</c:if>
+	</div>
 </div>
 </body>
 </html>

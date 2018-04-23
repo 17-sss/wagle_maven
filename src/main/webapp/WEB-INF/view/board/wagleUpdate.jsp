@@ -187,8 +187,9 @@
             
             <tr>
             <td colspan="2" class="w3-center">
-            <button class="w3-btn w3-yellow w3-round" type="submit">수정</button>
-            <a class="w3-btn w3-red w3-round" onclick="document.location.href='wagleDelete?wboardid=${wagle.wboardid}'">삭제</a>
+            <button class="w3-btn w3-yellow w3-round w3-padding" type="submit">수정</button>
+            <a class="w3-btn w3-red w3-round w3-padding" href="wagleDelete?wboardid=${wagle.wboardid}">삭제</a>
+            <a class="w3-btn w3-yellow w3-round w3-padding" href="mylist" style="size:auto;">목록</a>
             </td>
             </tr>
          </table>
